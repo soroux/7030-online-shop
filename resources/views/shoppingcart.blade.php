@@ -352,7 +352,6 @@
                                     </tbody>
                                 </table>
                             </div>
-
                             <div class="accordion clearfix">
                                 <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Direct Bank Transfer</div>
                                 <div class="acc_content clearfix">Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</div>
@@ -363,7 +362,11 @@
                                 <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Paypal</div>
                                 <div class="acc_content clearfix">Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus. Aenean lacinia bibendum nulla sed consectetur.</div>
                             </div>
-                            <a href="#" class="button button-3d fright">Place Order</a>
+                            <form method="post" action="{{route('cart.purchase')}}">
+                                @csrf
+                                <input type="hidden" value="{{$cart_total}}" name="amount">
+                                <button type="submit" class="btn btn-outline-dark">Place Order</button>
+                            </form>
                         </div>
                     </div>
                 </div>
