@@ -195,7 +195,7 @@ return [
 
             'mode' => 'sandbox', // can be normal, sandbox, zaringate
             'merchantId' => '5e682ada-3b69-11e8-aaf3-005056a205be',
-            'callbackUrl' => 'http://127.0.0.1:8000/view/cart',
+            'callbackUrl' => 'http://127.0.0.1:8000/view/bill/verify',
             'description' => 'payment using zarinpal',
         ],
         'zibal' => [

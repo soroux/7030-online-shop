@@ -24,8 +24,12 @@ Route::get('/add/{product}',[\App\Http\Controllers\CartController::class,'addOne
 Route::post('/add/{product}',[\App\Http\Controllers\CartController::class,'add'])->name('add.cart');
 Route::get('/view/cart',[\App\Http\Controllers\CartController::class,'view'])->name('view.cart');
 Route::get('/view/bill',[\App\Http\Controllers\CartController::class,'bill'])->name('view.bill');
-Route::post('/view/bill/purchase',[\App\Http\Controllers\CartController::class,'purchase'])->name('cart.purchase');
 
+
+
+Route::post('/view/bill/purchase',[\App\Http\Controllers\PayrecieptController::class,'purchase'])->name('cart.purchase');
+Route::get('/view/bill/verify',[\App\Http\Controllers\PayrecieptController::class,'verify'])->name('cart.verify');
+Route::get('/view/bill/verified',[\App\Http\Controllers\PayrecieptController::class,'verified'])->name('verified.purchase');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

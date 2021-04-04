@@ -182,99 +182,121 @@
                             <div class="card-body">
                                 Returning customer? <a href="login-register.html">Click here to login</a>
                             </div>
+                            <div class="card-body">
+                                @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
 
                     <div class="clear"></div>
+                    <div id="processTabs">
+                        <ul class="process-steps bottommargin clearfix">
+                            <li>
+                                <a href="#" class="i-circled i-bordered i-alt divcenter bgcolor">1</a>
+                                <h5>Complete Payment</h5>
+                            </li>
+                            <li>
+                                <a href="#" class="i-circled i-bordered i-alt divcenter ">2</a>
+                                <h5>Order Complete</h5>
+                            </li>
+                        </ul>
+                    </div>
 
+                    <div class="clear"></div>
+
+                    <div class="divider divider-center"><i class="icon-circle"></i></div>
+                    <form method="post" action="{{route('cart.purchase')}}" class="nobottommargin">
+                        @csrf
                     <div class="row clearfix">
-                        <div class="col-lg-6">
+
+                              <div class="col-lg-6">
                             <h3>Billing Address</h3>
 
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, vel odio non dicta provident sint ex autem mollitia dolorem illum repellat ipsum aliquid illo similique sapiente fugiat minus ratione.</p>
 
-                            <form id="billing-form" name="billing-form" class="nobottommargin" action="#" method="post">
+
 
                                 <div class="col_half">
                                     <label for="billing-form-name">Name:</label>
-                                    <input type="text" id="billing-form-name" name="billing-form-name" value="" class="sm-form-control" />
+                                    <input type="text" id="billing-form-name" name="pay_name" value="" class="sm-form-control" />
                                 </div>
 
                                 <div class="col_half col_last">
                                     <label for="billing-form-lname">Last Name:</label>
-                                    <input type="text" id="billing-form-lname" name="billing-form-lname" value="" class="sm-form-control" />
+                                    <input type="text" id="billing-form-lname" name="pay_lastname" value="" class="sm-form-control" />
                                 </div>
 
                                 <div class="clear"></div>
 
-                                <div class="col_full">
-                                    <label for="billing-form-city">City / Town</label>
-                                    <input type="text" id="billing-form-city" name="billing-form-city" value="" class="sm-form-control" />
-                                </div>
-
-                                <div class="col_full">
-                                    <label for="billing-form-address">Address:</label>
-                                    <input type="text" id="billing-form-address" name="billing-form-address" value="" class="sm-form-control" />
-                                </div>
-
-                                <div class="col_full">
-                                    <input type="text" id="billing-form-address2" name="billing-form-adress" value="" class="sm-form-control" />
-                                </div>
-
-
-
                                 <div class="col_half">
                                     <label for="billing-form-email">Email Address:</label>
-                                    <input type="email" id="billing-form-email" name="billing-form-email" value="" class="sm-form-control" />
+                                    <input type="email" id="billing-form-email" name="pay_email" value="" class="sm-form-control" />
                                 </div>
 
                                 <div class="col_half col_last">
                                     <label for="billing-form-phone">Phone:</label>
-                                    <input type="text" id="billing-form-phone" name="billing-form-phone" value="" class="sm-form-control" />
+                                    <input type="text" id="billing-form-phone" name="pay_phone" value="" class="sm-form-control" />
                                 </div>
 
-                            </form>
+
                         </div>
-                        <div class="col-lg-6">
+                              <div class="col-lg-6">
                             <h3 class="">Shipping Address</h3>
 
                             <form id="shipping-form" name="shipping-form" class="nobottommargin" action="#" method="post">
 
                                 <div class="col_half">
                                     <label for="shipping-form-name">Name:</label>
-                                    <input type="text" id="shipping-form-name" name="shipping-form-name" value="" class="sm-form-control" />
+                                    <input type="text" id="shipping-form-name" name="ship_name" value="" class="sm-form-control" />
                                 </div>
 
                                 <div class="col_half col_last">
                                     <label for="shipping-form-lname">Last Name:</label>
-                                    <input type="text" id="shipping-form-lname" name="shipping-form-lname" value="" class="sm-form-control" />
+                                    <input type="text" id="shipping-form-lname" name="ship_lastname" value="" class="sm-form-control" />
                                 </div>
 
                                 <div class="clear"></div>
 
                                 <div class="col_full">
                                     <label for="shipping-form-city">City / Town</label>
-                                    <input type="text" id="shipping-form-city" name="shipping-form-city" value="" class="sm-form-control" />
+                                    <input type="text" id="shipping-form-city" name="ship_city" value="" class="sm-form-control" />
                                 </div>
 
                                 <div class="col_full">
                                     <label for="shipping-form-address">Address:</label>
-                                    <input type="text" id="shipping-form-address" name="shipping-form-address" value="" class="sm-form-control" />
+                                    <input type="text" id="shipping-form-address" name="ship_address" value="" class="sm-form-control" />
                                 </div>
-
                                 <div class="col_full">
-                                    <input type="text" id="shipping-form-address2" name="shipping-form-adress" value="" class="sm-form-control" />
+                                    <label for="shipping-form-address">PostCode:</label>
+                                    <input type="text" id="shipping-form-address" name="ship_postcode" value="" class="sm-form-control" />
+                                </div>
+                                <div class="col_half">
+                                    <label for="billing-form-email">Email Address:</label>
+                                    <input type="email" id="billing-form-email" name="ship_email" value="" class="sm-form-control" />
                                 </div>
 
+                                <div class="col_half col_last">
+                                    <label for="billing-form-phone">Phone:</label>
+                                    <input type="text" id="billing-form-phone" name="ship_phone" value="" class="sm-form-control" />
+                                </div>
 
 
                                 <div class="col_full">
                                     <label for="shipping-form-message">Notes <small>*</small></label>
-                                    <textarea class="sm-form-control" id="shipping-form-message" name="shipping-form-message" rows="6" cols="30"></textarea>
+                                    <textarea class="sm-form-control" id="shipping-form-message" name="ship_message" rows="6" cols="30"></textarea>
                                 </div>
 
                             </form>
                         </div>
+
                         <div class="w-100 bottommargin"></div>
                         <div class="col-lg-6">
                             <h4>Your Orders</h4>
@@ -362,13 +384,15 @@
                                 <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Paypal</div>
                                 <div class="acc_content clearfix">Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus. Aenean lacinia bibendum nulla sed consectetur.</div>
                             </div>
-                            <form method="post" action="{{route('cart.purchase')}}">
-                                @csrf
+
+
                                 <input type="hidden" value="{{$cart_total}}" name="amount">
+                            <input type="hidden" value="@foreach($carts as $cart) {{$cart->name."-"}}  @endforeach " name="items">
                                 <button type="submit" class="btn btn-outline-dark">Place Order</button>
-                            </form>
+
                         </div>
                     </div>
+                    </form>
                 </div>
 
             </div>
