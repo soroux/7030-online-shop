@@ -48,6 +48,7 @@ class PayrecieptController extends Controller
         $input['amount']= $cart_total;
         $input['items']= $request->items;
         $input['uuid']=$invoice->getUuid();
+
         $payreciept = new payreciept();
         $payreciept->create($input);
 //
@@ -80,7 +81,8 @@ $amount =$bill->amount;
             $bill->refrenceID =  $receipt->getReferenceId();
             $bill->status = "done";
             $bill->update();
-            return redirect()->route('verified.purchase');
+
+            return redirect()->route('verified.purchase',$bill);
 
 
         } catch (InvalidPaymentException $exception) {
@@ -92,23 +94,31 @@ $amount =$bill->amount;
             $bill->error = $exception->getMessage();
             $bill->update();
 
-            return redirect()->route('verified.purchase');
+            return redirect()->route('verified.purchase',$bill);
 
         }
 
 
      }
 
-     public function verified(){
+     public function verified($bill){
+         $bill = payreciept::where('id',$bill)->firstOrFail();
+         if ($bill->transaction_id && !Cart::restore($bill->transaction_id)) {
+             Cart::store($bill->transaction_id);
+         }
+         $paiedcarts = Cart::content();
+          Cart::destroy();
          $carts = Cart::content();
          $cart_total = Cart::total();
          $products = Product::all();
 
 
+
          return view('purchase-verified',[
              'products'=>$products,
-
+'paiedcarts'=>$paiedcarts,
              'carts'=>$carts,
-             'cart_total'=>$cart_total]);
+             'cart_total'=>$cart_total,
+         'bill'=>$bill]);
      }
 }

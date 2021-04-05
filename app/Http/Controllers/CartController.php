@@ -42,13 +42,25 @@ class CartController extends Controller
             'cart_subtotal'=>$cart_subtotal,
         ]);
     }
-    public function bill(){
+    public function remove($cart){
+        Cart::remove($cart);
 
+
+        return redirect()->route('view.cart');
+    }
+
+    public function update(Request $request){
+        Cart::update($request->id,$request->quantity);
+
+        return redirect()->route('view.cart');
+    }
+
+    public function shipInfo(){
         $carts = Cart::content();
         $cart_total = Cart::total();
         $cart_subtotal = Cart::subtotal();
 
-        return view('shoppingcart',[
+        return view('shipping-information',[
             'carts'=>$carts,
             'cart_total'=>$cart_total,
             'cart_subtotal'=>$cart_subtotal,

@@ -20,16 +20,21 @@ Route::get('/blog/{post}/post',[\App\Http\Controllers\HomeController::class,'vie
 Route::get('/{product}/quickView',[\App\Http\Controllers\HomeController::class,'quickView'])->name('quick.view');
 Route::get('/{product}/view',[\App\Http\Controllers\HomeController::class,'view'])->name('view');
 
+
+
 Route::get('/add/{product}',[\App\Http\Controllers\CartController::class,'addOne'])->name('add.cart.one');
 Route::post('/add/{product}',[\App\Http\Controllers\CartController::class,'add'])->name('add.cart');
 Route::get('/view/cart',[\App\Http\Controllers\CartController::class,'view'])->name('view.cart');
-Route::get('/view/bill',[\App\Http\Controllers\CartController::class,'bill'])->name('view.bill');
+Route::get('/view/cart/{cart}/remove',[\App\Http\Controllers\CartController::class,'remove'])->name('remove.cart');
+Route::patch('/view/cart/update',[\App\Http\Controllers\CartController::class,'update'])->name('update.cart');
+
+Route::get('/view/shipInfo',[\App\Http\Controllers\CartController::class,'shipInfo'])->name('ship.info');
 
 
 
 Route::post('/view/bill/purchase',[\App\Http\Controllers\PayrecieptController::class,'purchase'])->name('cart.purchase');
 Route::get('/view/bill/verify',[\App\Http\Controllers\PayrecieptController::class,'verify'])->name('cart.verify');
-Route::get('/view/bill/verified',[\App\Http\Controllers\PayrecieptController::class,'verified'])->name('verified.purchase');
+Route::get('/view/bill/{bill}/verified',[\App\Http\Controllers\PayrecieptController::class,'verified'])->name('verified.purchase');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

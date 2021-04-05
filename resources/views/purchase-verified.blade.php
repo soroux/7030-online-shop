@@ -137,19 +137,70 @@
                     <div id="processTabs">
                         <ul class="process-steps bottommargin clearfix">
                             <li>
-                                <a href="#" class="i-circled i-bordered i-alt divcenter ">1</a>
-                                <h5>Complete Payment</h5>
+                                <a href="#" class="i-circled i-bordered i-alt divcenter">1</a>
+                                <h5>Review Cart</h5>
                             </li>
                             <li>
-                                <a href="#" class="i-circled i-bordered i-alt divcenter bgcolor">2</a>
+                                <a href="#" class="i-circled i-bordered i-alt divcenter ">2</a>
+                                <h5>Enter Shipping Info</h5>
+                            </li>
+                            <li>
+                                <a href="#" class="i-circled i-bordered i-alt divcenter bgcolor">3</a>
                                 <h5>Order Complete</h5>
                             </li>
                         </ul>
                         <div>
                             <div id="ptab4">
+                                @if($bill->status = 'done')
                                 <div class="alert alert-success">
-                                    <strong>Thank You.</strong> Your order will be processed once we verify the Payment.
+                                    <strong>Thank You.{{$bill->pay_name}}</strong> Your order will be processed once we verify the Payment.
+                                    <div class="col-lg-6">
+                                        <h4>Your Orders</h4>
+
+                                        <div class="table-responsive">
+                                            <table class="table cart">
+                                                <thead>
+                                                <tr>
+                                                    <th class="cart-product-thumbnail">&nbsp;</th>
+                                                    <th class="cart-product-name">Product</th>
+                                                    <th class="cart-product-quantity">Quantity</th>
+                                                    <th class="cart-product-subtotal">Total</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($paiedcarts as $paiedcart)
+                                                    <tr class="cart_item">
+                                                        <td class="cart-product-thumbnail">
+                                                            <a href="#"><img width="64" height="64" src="{{$paiedcart->product_image}}" alt="Pink Printed Dress"></a>
+                                                        </td>
+
+                                                        <td class="cart-product-name">
+                                                            <a href="#">{{$paiedcart->name}}</a>
+                                                        </td>
+
+                                                        <td class="cart-product-quantity">
+                                                            <div class="quantity clearfix">
+                                                                x{{$paiedcart->qty}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td class="cart-product-subtotal">
+                                                            <span class="amount">{{$paiedcart->total}}</span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
+                                @else
+                                    <div class="alert alert-danger">
+                                        <strong>Im Sorry.{{$bill->name}}</strong> {{$bill->error}}.
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
                     </div>
