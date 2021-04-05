@@ -8,6 +8,7 @@ use App\Models\Website_design;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment;
@@ -107,12 +108,11 @@ $amount =$bill->amount;
              Cart::store($bill->transaction_id);
          }
          $paiedcarts = Cart::content();
+
           Cart::destroy();
          $carts = Cart::content();
          $cart_total = Cart::total();
          $products = Product::all();
-
-
 
          return view('purchase-verified',[
              'products'=>$products,
@@ -121,4 +121,12 @@ $amount =$bill->amount;
              'cart_total'=>$cart_total,
          'bill'=>$bill]);
      }
+
+
+
+
+
+
+
+
 }

@@ -7,6 +7,7 @@ use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Mail;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment;
 
@@ -65,6 +66,30 @@ class CartController extends Controller
             'cart_total'=>$cart_total,
             'cart_subtotal'=>$cart_subtotal,
         ]);
+
+    }
+
+
+
+    public function sendBill(payreciept $bill){
+      Cart::restore($bill->transaction_id);
+
+
+
+$input['title'] = "رسید پرداخت فروشگاه 7030";
+        $input['name'] = $bill->pay_name;
+$input['carts'] = Cart::content();
+$input['date'] = $bill->created_at;
+$input['referenceId'] = $bill->refrenceID;
+      $input['cart_total'] = Cart::total();
+        $input['email'] = $bill->pay_email;
+
+
+        Mail::send('email-bill',$input,function ($message){
+            $message->to('soroush.ganjuee@gmail.com')->subject('7030 فروشگاه قهوه');
+        });
+
+        return back();
 
     }
 

@@ -152,6 +152,7 @@
                         <div>
                             <div id="ptab4">
                                 @if($bill->status = 'done')
+
                                 <div class="alert alert-success">
                                     <strong>Thank You.{{$bill->pay_name}}</strong> Your order will be processed once we verify the Payment.
                                     <div class="col-lg-6">
@@ -167,7 +168,8 @@
                                                     <th class="cart-product-subtotal">Total</th>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
+
+                                              <tbody>
                                                 @foreach($paiedcarts as $paiedcart)
                                                     <tr class="cart_item">
                                                         <td class="cart-product-thumbnail">
@@ -189,12 +191,17 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
+
                                                 </tbody>
 
                                             </table>
+
                                         </div>
+
                                     </div>
                                 </div>
+                                    <a  href="{{route('send.bill.email',$bill)}}" class="btn btn-outline-primary align-center">bill Send via Email</a></th>
+
                                 @else
                                     <div class="alert alert-danger">
                                         <strong>Im Sorry.{{$bill->name}}</strong> {{$bill->error}}.

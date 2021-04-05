@@ -27,8 +27,9 @@ Route::post('/add/{product}',[\App\Http\Controllers\CartController::class,'add']
 Route::get('/view/cart',[\App\Http\Controllers\CartController::class,'view'])->name('view.cart');
 Route::get('/view/cart/{cart}/remove',[\App\Http\Controllers\CartController::class,'remove'])->name('remove.cart');
 Route::patch('/view/cart/update',[\App\Http\Controllers\CartController::class,'update'])->name('update.cart');
-
 Route::get('/view/shipInfo',[\App\Http\Controllers\CartController::class,'shipInfo'])->name('ship.info');
+
+Route::get('/view/send/{bill}/mail',[\App\Http\Controllers\CartController::class,'sendBill'])->name('send.bill.email');
 
 
 
