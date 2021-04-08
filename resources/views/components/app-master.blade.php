@@ -1,10 +1,5 @@
 @extends('layouts.app')
 @section('main')
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <!-- Page Wrapper -->
-                <div id="wrapper">
 
                     <!-- Sidebar -->
                     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -37,25 +32,39 @@
 
                         <!-- Nav Item - Utilities Collapse Menu -->
                         <li class="nav-item">
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
                                 <i class="fas fa-fw fa-cog"></i>
                                 <span>Posts</span>
                             </a>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                 <div class="bg-white py-2 collapse-inner rounded">
                                     <h6 class="collapse-header">Post selection</h6>
-                                    <a class="collapse-item" href="{{route('dashboard.posts')}}">AllPosts</a>
+                                    <a class="collapse-item" href="{{route('dashboard.posts')}}">All Posts</a>
                                     <a class="collapse-item" href="{{route('dashboard.posts.create')}}">Create Post</a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Nav Item - Utilities Collapse Menu -->
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                <i class="fas fa-fw fa-cog"></i>
+                                <span>Comments & Reviews</span>
+                            </a>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                <div class="bg-white py-2 collapse-inner rounded">
+                                    <h6 class="collapse-header">selection</h6>
+                                    <a class="collapse-item" href="{{route('dashboard.comments')}}">All Comments</a>
+                                    <a class="collapse-item" href="{{route('dashboard.reviews')}}">All Reviews</a>
                                 </div>
                             </div>
                         </li>
                         <!-- Nav Item - Pages Collapse Menu -->
                         <li class="nav-item">
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
                                 <i class="fas fa-fw fa-cog"></i>
                                 <span>Images</span>
                             </a>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                 <div class="bg-white py-2 collapse-inner rounded">
                                     <h6 class="collapse-header">Images selection</h6>
                                     <a class="collapse-item" href="{{route('dashboard.hero')}}">Hero Images</a>
@@ -94,16 +103,11 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Charts -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="charts.html">
-                                <i class="fas fa-fw fa-chart-area"></i>
-                                <span>Charts settings</span></a>
-                        </li>
+
 
                         <!-- Nav Item - Tables -->
                         <li class="nav-item">
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="{{route('dashboard.sales')}}">
                                 <i class="fas fa-fw fa-table"></i>
                                 <span>Sales summery</span></a>
                         </li>
@@ -120,15 +124,6 @@
                     <!-- End of Sidebar -->
 
                     @yield('content')
-                </div>
-                <!-- End of Page Wrapper -->
 
-                <!-- Scroll to Top Button-->
-                <a class="scroll-to-top rounded" href="#page-top">
-                    <i class="fas fa-angle-up"></i>
-                </a>
-            </div>
-        </div>
-    </div>
 
 @endsection

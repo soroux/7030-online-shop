@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Website_design;
@@ -55,13 +56,30 @@ class HomeController extends Controller
     }
 
     public function viewPost(Post $post){
+        $comments = $post->comments()->where('status','verified')->get();
         $carts = Cart::content();
         $cart_total = Cart::total();
         return view('post',[
+            'comments' => $comments,
             'carts'=>$carts,
             'cart_total'=>$cart_total,
             'post'=>$post]);
     }
+
+
+    public function createComment(Request $request,Post $post){
+    $input = $request->validate([
+        'name'=>'required',
+        'content'=>'required',
+    ]);
+    $input['email'] = $request->email;
+
+  $comment = $post->Comments()->create($input);
+   return redirect()->route('blog.post',$post);
+
+    }
+
+
     public function quickView(Product $product){
         $carts = Cart::content();
         $cart_total = Cart::total();
@@ -75,13 +93,29 @@ class HomeController extends Controller
 
 
     public function View(Product $product){
+        $reviews = $product->Reviews()->where('status','verified')->get();
         $carts = Cart::content();
         $cart_total = Cart::total();
         return view('product-details',[
+            'reviews'=>$reviews,
             'product'=>$product,
             'carts'=>$carts,
             'cart_total'=>$cart_total,
 
         ]);
+    }
+
+
+    public function createReview(Request $request,Product $product){
+        $input = $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'rating'=>'required',
+            'content'=>'required'
+        ]);
+
+        $review = $product->Reviews()->create($input);
+        return redirect()->route('view',$product);
+
     }
 }

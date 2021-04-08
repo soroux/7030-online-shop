@@ -7,10 +7,10 @@
             <div id="content">
                 @if(session('message'))
                     <div class="alert alert-danger">{{session('message')}}</div>
-                @elseif(session('product-created-message'))
-                    <div class="alert alert-success">{{session('product-created-message')}}</div>
-                @elseif(session('product-updated-message'))
-                    <div class="alert alert-success">{{session('product-updated-message')}}</div>
+                @elseif(session('category-created-message'))
+                    <div class="alert alert-success">{{session('category-created-message')}}</div>
+                @elseif(session('category-updated-message'))
+                    <div class="alert alert-success">{{session('category-updated-message')}}</div>
 
             @endif
 
@@ -50,7 +50,7 @@
 
                                     @foreach($categories as $category)
                                         <tr>
-                                            <td>{{$category->name}}</td>
+                                            <td>{{$category->text}}</td>
                                             <td><img width="120" height="120" src="{{$category->popular_categories}}"></td>
 
                                             <td><a href="{{route('dashboard.category.edit',$category->id)}}"><button class="btn btn-primary">Edit</button></a></td>

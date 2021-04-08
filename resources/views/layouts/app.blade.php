@@ -19,11 +19,12 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+        <link href="{{asset('css/sb-admin-2.css')}}" rel="stylesheet">
 
         @livewireStyles
 
         <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="{{ mix('js/app.js') }}" ></script>
     </head>
     <body id="page-top" class="font-sans antialiased">
         <x-jet-banner />
@@ -42,7 +43,24 @@
 
             <!-- Page Content -->
             <main>
+                <div class="py-12">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                            <!-- Page Wrapper -->
+                            <div id="wrapper">
+
                 @yield('main')
+                            </div>
+                            <!-- End of Page Wrapper -->
+
+                            <!-- Scroll to Top Button-->
+                            <a class="scroll-to-top rounded" href="#page-top">
+                                <i class="fas fa-angle-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </main>
         </div>
 
@@ -58,12 +76,15 @@
 
         <!-- Custom scripts for all pages-->
         <script src="{{asset('js/sb-admin-2.js')}}"></script>
-
+        <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
         <!-- Page level plugins -->
         <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
 
         <!-- Page level custom scripts -->
+        @yield('footer')
         <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
         <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
+        <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
     </body>
 </html>

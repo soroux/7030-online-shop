@@ -123,9 +123,8 @@
                     <div class="swiper-slide dark" style="background-image: url({{asset($hero->image)}}) ; ">
                         <div class="container clearfix">
                             <div class="slider-caption slider-caption-center">
-                                <div class="h5 mb-2 font-secondary">Fresh Coffee Bean</div>
-                                <h2 class="bottommargin-sm text-white">Arabica / Robosta</h2>
-                                <a href="#" class="button bg-white text-dark button-light">Shop</a>
+
+                                <h2 class="bottommargin-sm text-white">{{$hero->text}}</h2>
                             </div>
                         </div>
                     </div>
@@ -174,7 +173,7 @@
                             <a href="#" style="background: url({{$category->popular_categories}}) no-repeat center center; background-size: cover;">
                                 <div class="vertical-middle dark center">
                                     <div class="heading-block nomargin noborder">
-                                        <h3 class="nott t600 ls0">ماگ و لیوان</h3>
+                                        <h3 class="nott t600 ls0">{{$category->text}}</h3>
                                         <small class="button bg-white text-dark button-light button-mini">Browse Now</small>
                                     </div>
                                 </div>

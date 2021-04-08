@@ -351,7 +351,7 @@
 
 
                                 <input type="hidden" value="{{$cart_total}}" name="amount">
-                                <input type="hidden" value="@foreach($carts as $cart) {{$cart->name."-"}}  @endforeach " name="items">
+                                <input type="hidden" value="@foreach($carts as $cart) {{"name:".$cart->name.",id:".$cart->id.",qty:".$cart->qty."-"}}  @endforeach " name="items">
                                 <button type="submit" class="btn btn-outline-dark">Place Order</button>
 
                             </div>

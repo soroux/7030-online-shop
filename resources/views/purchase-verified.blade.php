@@ -151,7 +151,7 @@
                         </ul>
                         <div>
                             <div id="ptab4">
-                                @if($bill->status = 'done')
+                                @if($bill->status == 'done')
 
                                 <div class="alert alert-success">
                                     <strong>Thank You.{{$bill->pay_name}}</strong> Your order will be processed once we verify the Payment.
@@ -200,11 +200,17 @@
 
                                     </div>
                                 </div>
-                                    <a  href="{{route('send.bill.email',$bill)}}" class="btn btn-outline-primary align-center">bill Send via Email</a></th>
-
+                                @if($bill->pay_name)
+                                    <a  href="{{route('send.bill.email',$bill)}}" class="btn btn-outline-primary align-center">ارسال اطلاعات پرداخت </a></th>
+                                    @endif
+                                    @if($bill->ship_name)
+                                        <a  href="{{route('send.ship.email',$bill)}}" class="btn btn-outline-primary align-center">ارسال ایمیل اطلاع برای دریافت کننده</a></th>
+                                    @endif
                                 @else
                                     <div class="alert alert-danger">
-                                        <strong>Im Sorry.{{$bill->name}}</strong> {{$bill->error}}.
+                                        <strong>پرداخت ناموفق... {{$bill->pay_name}},متاسفیم</strong>
+                                        <br>
+                                        <h3>{{$bill->error}}.</h3>
                                     </div>
                                 @endif
 

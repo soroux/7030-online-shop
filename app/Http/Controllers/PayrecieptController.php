@@ -17,6 +17,9 @@ class PayrecieptController extends Controller
 {
     //
 
+
+
+
     public function purchase(Request $request){
 
         $input = $request->validate([

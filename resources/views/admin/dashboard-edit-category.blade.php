@@ -19,8 +19,8 @@
                         @method('PATCH')
 
                         <div class="form-group">
-                            <label for="product_name">category image Name</label>
-                            <input type="text" name="name" class="form-control" id="name" aria-describedby="" placeholder="Enter category Name" value="{{$category->name}}">
+                            <label for="text">category text</label>
+                            <input type="text" name="text" class="form-control" id="text" aria-describedby="" placeholder="Enter category text" value="{{$category->text}}">
                         </div>
 
                         <div class="form-group">

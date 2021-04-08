@@ -14,7 +14,7 @@ class Product extends Model implements Buyable
     public function User(){
         return $this->belongsTo(User::class);
     }
-    public function Review(){
+    public function Reviews(){
         return $this->hasMany(Review::class);
     }
     public function tags(){

@@ -164,6 +164,7 @@
                                             <th class="cart-product-name">Product</th>
                                             <th class="cart-product-price">Unit Price</th>
                                             <th class="cart-product-quantity">Quantity</th>
+                                            <th class="cart-product-quantity">Edit</th>
                                             <th class="cart-product-subtotal">Total</th>
                                         </tr>
                                         </thead>
@@ -194,8 +195,11 @@
                                                     <input type="text" step="1" min="1"  name="quantity" value="{{$cart->qty}}" title="Qty" class="qty" size="4" />
                                                     <input type="button" value="+" class="plus">
                                                 </div>
-                                                <button value="{{$cart->rowId}}" class="btn btn-outline-primary" name="id">submit</button>
+
                                             </td>
+                                                <td class="cart-product-quantity">
+                                                    <button value="{{$cart->rowId}}" class="btn btn-outline-primary" name="id">submit</button>
+                                                </td>
                                             </form>
                                             <td class="cart-product-subtotal">
                                                 <span class="amount">{{$cart->total()}}</span>

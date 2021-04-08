@@ -19,8 +19,8 @@
                         @method('PATCH')
 
                         <div class="form-group">
-                            <label for="product_name">hero image Name</label>
-                            <input type="text" name="name" class="form-control" id="name" aria-describedby="" placeholder="Enter hero Name" value="{{$hero->name}}">
+                            <label for="text">hero text</label>
+                            <input type="text" name="text" class="form-control" id="text" aria-describedby="" placeholder="Enter hero tex" value="{{$hero->text}}">
                         </div>
 
                         <div class="form-group">

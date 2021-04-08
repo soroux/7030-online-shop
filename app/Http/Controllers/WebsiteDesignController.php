@@ -27,7 +27,8 @@ class WebsiteDesignController extends Controller
     {
         //
         $inputs =  $request->validate([
-            'name'=>'required',
+
+            'text'=>'required',
 
         ]);
 
@@ -37,12 +38,13 @@ class WebsiteDesignController extends Controller
             $hero->image = $inputs['image'];
         }
 
-        $hero->name = $inputs['name'];
+
+        $hero->text = $inputs['text'];
 
 
         $hero->save();
 
-        $request->session()->flash('product-updated-message',$inputs['name'].' Product was updated');
+        $request->session()->flash('image-updated-message'.' image was updated');
         return redirect()->route('dashboard.hero');
     }
 
@@ -57,8 +59,8 @@ class WebsiteDesignController extends Controller
     {
         //
         $inputs =  $request->validate([
-            'name'=>'required',
 
+            'text'=>'required',
         ]);
 
         if ($request->popular_categories){
@@ -67,12 +69,13 @@ class WebsiteDesignController extends Controller
             $category->image = $inputs['popular_categories'];
         }
 
-        $category->name = $inputs['name'];
+
+        $category->text = $inputs['text'];
 
 
         $category->save();
 
-        $request->session()->flash('product-updated-message',$inputs['name'].' Product was updated');
+        $request->session()->flash('image-updated-message'.' image was updated');
         return redirect()->route('dashboard.categories');
     }
 }
