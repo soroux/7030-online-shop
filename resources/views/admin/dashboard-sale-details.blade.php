@@ -123,6 +123,7 @@
                                             <td>کدپستی - تحویل گیرنده</td>
                                             <td>{{$receiptContent->ship_postcode}}</td>
                                         </tr>
+
                                         <tr>
                                             <td>10</td>
                                             <td>وضعیت پرداخت</td>
@@ -166,4 +167,5 @@
 
     @endsection
 </x-app-master>
+
 

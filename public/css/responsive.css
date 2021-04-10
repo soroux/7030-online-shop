@@ -1547,7 +1547,7 @@
 
 	#primary-menu-trigger { left: 20px; }
 
-	#top-cart { display: none; }
+	#top-cart { right: 40px; }
 
 	#top-search a { right: 40px; }
 

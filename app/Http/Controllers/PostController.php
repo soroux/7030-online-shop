@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -35,7 +36,7 @@ class PostController extends Controller
 
         if ($request->image){
 
-            $inputs['image'] = $request->image->store('images');
+            $inputs['image'] = $request->image->storeAs('images/posts',$request->image->getClientOriginalName());
         }
 
 
@@ -51,7 +52,7 @@ class PostController extends Controller
     {
         //
         $tags = Tag::all();
-        return view('admin/dashboard-post-edit',['product'=>$post,'tags'=>$tags]);
+        return view('admin/dashboard-post-edit',['post'=>$post,'tags'=>$tags]);
     }
 
     public function update(Request $request, Post $post)
@@ -61,6 +62,7 @@ class PostController extends Controller
             'title'=>'required',
             'image'=>'file',
             'content'=>'required',
+            'category'=>'required',
 
 
         ]);
@@ -68,7 +70,7 @@ class PostController extends Controller
 
         if ($request->image){
 
-            $inputs['image'] = $request->image->store('images');
+            $inputs['image'] = $request->image->storeAs('images/posts',$request->image->getClientOriginalName());
             $post->image = $inputs['image'];
         }
 
@@ -89,9 +91,11 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
-
+//
+//        unlink($post->image);
         $post->delete();
-        Session::flash('message','Product was deleted');
+
+        Session::flash('message','Post was deleted');
         return back();
     }
 }

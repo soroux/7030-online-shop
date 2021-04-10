@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index(){
         $carts = Cart::content();
         $cart_total = Cart::total();
-        $products = Product::all();
+        $products = Product::all()->sortByDesc('created_at');
         $special_products = Product::all()->where('featured',1);
         $heroes = Website_design::all()->where('name','hero');
         $categories = Website_design::all()->where('name','category');
@@ -50,6 +50,24 @@ class HomeController extends Controller
         $cart_total = Cart::total();
         $posts = Post::all();
         return view('blog',[
+            'carts'=>$carts,
+            'cart_total'=>$cart_total,
+            'posts'=>$posts]);
+    }
+    public function contacts(){
+        $carts = Cart::content();
+        $cart_total = Cart::total();
+        $posts = Post::all();
+        return view('contacts',[
+            'carts'=>$carts,
+            'cart_total'=>$cart_total,
+            'posts'=>$posts]);
+    }
+    public function about(){
+        $carts = Cart::content();
+        $cart_total = Cart::total();
+        $posts = Post::all();
+        return view('about',[
             'carts'=>$carts,
             'cart_total'=>$cart_total,
             'posts'=>$posts]);
@@ -96,11 +114,13 @@ class HomeController extends Controller
         $reviews = $product->Reviews()->where('status','verified')->get();
         $carts = Cart::content();
         $cart_total = Cart::total();
+        $related_products = Product::where('category' , $product->category)->get();
         return view('product-details',[
             'reviews'=>$reviews,
             'product'=>$product,
             'carts'=>$carts,
             'cart_total'=>$cart_total,
+            'related_products'=>$related_products,
 
         ]);
     }

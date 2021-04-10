@@ -88,6 +88,7 @@ $receipts = payreciept::all();
     public function saleView(payreciept $sale){
         return view('admin.dashboard-sale-details',[
             'receiptContent'=>$sale,
+
         ]);
     }
 }

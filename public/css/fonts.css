@@ -3,6 +3,31 @@
 
 	Replace your Fonts as necessary
 -----------------------------------------------------------------*/
+@font-face {
+    font-family: 'iran-sans', sans-serif;
+    src: url("fonts/irsans_p30download.com.ttf") format('ttf');
+}
+@font-face{
+    font-family: 'vazir', sans-serif;
+    src: url("fonts/vazir-font-v16.1.0/vazir.woff") format("woff");
+}
+@font-face{
+    font-family: 'vazir-bold', sans-serif;
+    src: url("fonts/vazir-font-v16.1.0/vazir-bold.woff") format("woff");
+}
+@font-face{
+    font-family: 'vazir-light', sans-serif;
+    src: url("fonts/vazir-font-v16.1.0/vazir-light.woff") format("woff");
+}
+@font-face{
+    font-family: 'vazir-medium', sans-serif;
+    src: url("fonts/vazir-font-v16.1.0/vazir-medium.woff") format("woff");
+}
+@font-face{
+    font-family: 'vazir-thin', sans-serif;
+    src: url("fonts/vazir-font-v16.1.0/vazir-thin.woff") format("woff");
+}
+
 
 body,
 small,
@@ -71,7 +96,6 @@ h6 {
 	font-size: 36px;
 	line-height: 100%;
 }
-
 #primary-menu ul li > a {
 	font-weight: bold;
 	font-size: 13px;

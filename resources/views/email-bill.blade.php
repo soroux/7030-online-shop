@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fa-IR">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="x-apple-disable-message-reformatting" />
@@ -482,7 +482,9 @@
                                         <table class="purchase" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                                             <tr>
                                                 <td>
-                                                    <h3>کد تراکنش بانکی {{$referenceId}} </h3></td>
+                                                    <h3>شناسه تراکنش بانکی {{$transaction_id}} <br> </h3>
+                                                <h3>کد ارجاع {{$referenceId}}<br> </h3>
+                                                </td>
                                                 <td>
                                                     <h3 class="align-right">{{$date}}</h3></td>
                                             </tr>

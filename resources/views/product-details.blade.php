@@ -11,7 +11,7 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="{{route('home')}}" class="standard-logo"><img src="{{asset('css/shop/images/logo.png')}}" alt="Canvas Logo"></a>
+                        <a href="{{route('home')}}" class="standard-logo"><img src="{{asset('css/shop/images/logo@2x.png')}}" alt="Canvas Logo"></a>
                         <a href="{{route('home')}}" class="retina-logo"><img src="{{asset('css/shop/images/logo@2x.png')}}" alt="Canvas Logo"></a>
                     </div><!-- #logo end -->
 
@@ -25,7 +25,7 @@
                             ============================================= -->
                             <li><a href="#"><div>محصولات</div></a>
                                 <div class="mega-menu-content style-2 clearfix">
-                                    <ul class="mega-menu-column border-left-0 col-lg-6">
+                                    <ul class="mega-menu-column border-left-0 col-lg-12">
                                         <li class="mega-menu-title"><a href="{{route('shop')}}"><div>تمام محصولات</div></a>
                                             <ul>
                                                 <li><a href="{{route('shop')}}"><div>تجهیزات دم آوری</div></a></li>
@@ -39,23 +39,11 @@
                             </li><!-- .mega-menu end -->
                             <li><a href="#"><div>آموزش ها</div></a>
                                 <div class="mega-menu-content style-2 clearfix">
-                                    <ul class="mega-menu-column col-lg-6">
-                                        <li class="mega-menu-title"><a href="#"><div>دم آوری قهوه</div></a>
+                                    <ul class="mega-menu-column col-lg-12">
+                                        <li class="mega-menu-title"><a href="{{route('blog')}}"><div>همه پست ها</div></a>
                                             <ul>
-                                                <li><a href="#"><div>اسپرسو ساز خانگی</div></a></li>
-                                                <li><a href="#"><div>موکا پات</div></a></li>
-                                                <li><a href="#"><div>فرنچ پرس</div></a></li>
-                                                <li><a href="#"><div>جزوه</div></a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <ul class="mega-menu-column col-lg-6">
-                                        <li class="mega-menu-title"><a href="#"><div>رسیپی ها</div></a>
-                                            <ul>
-                                                <li><a href="#"><div>اسپرسو</div></a></li>
-                                                <li><a href="#"><div>لاته</div></a></li>
-                                                <li><a href="#"><div>موکا</div></a></li>
-                                                <li><a href="#"><div>امریکانو</div></a></li>
+                                                <li><a href="{{route('blog')}}"><div>آموزش دم آوری</div></a></li>
+                                                <li><a href="{{route('blog')}}"><div>رسیپی ها</div></a></li>
 
                                             </ul>
                                         </li>
@@ -63,21 +51,21 @@
                                 </div>
                             </li><!-- .mega-menu end -->
                             <li><a href="{{route('shop')}}"><div>فروشگاه</div></a></li>
-                            <li><a href="#"><div>تماس با ما</div></a></li>
+                            <li><a href="{{route('contacts')}}"><div>تماس با ما</div></a></li>
 
-                            <li><a href="#"><div>درباره ما</div></a></li>
+                            <li><a href="{{route('about')}}"><div>درباره ما</div></a></li>
                         </ul>
 
                         <!-- Top Search
                         ============================================= -->
-                        <div id="top-search">
-                            <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i class="icon-line-cross"></i></a>
-                            <form action="search.html" method="get">
-                                <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
-                            </form>
-                        </div><!-- #top-search end -->
+                    {{--                        <div id="top-search">--}}
+                    {{--                            <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i class="icon-line-cross"></i></a>--}}
+                    {{--                            <form action="search.html" method="get">--}}
+                    {{--                                <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">--}}
+                    {{--                            </form>--}}
+                    {{--                        </div><!-- #top-search end -->--}}
 
-                        <!-- Top CartController
+                    <!-- Top CartController
                         ============================================= -->
                         <div id="top-cart">
                             <a href="#" id="top-cart-trigger"><i class="icon-line-bag"></i><span>{{\Gloudemans\Shoppingcart\Facades\Cart::content()->count()}}</span></a>
@@ -88,23 +76,31 @@
                                 </div>
 
                                 <div class="top-cart-items">
-                                    @foreach($carts as $cart)
-                                        <div class="top-cart-item clearfix">
-                                            <div class="top-cart-item-image">
-                                                <a href="#"><img src="{{$cart->product_image}}" alt="" /></a>
+                                    @if(\Gloudemans\Shoppingcart\Facades\Cart::content()->count() == 0)
+                                        <tr class="top-cart-item clearfix">
+                                            <td class="top-cart-item-name">
+                                                <h5 class="alert-danger">سبد خرید شما خالیست</h5>
+                                            </td>
+                                        </tr>
+                                    @else
+                                        @foreach($carts as $cart)
+                                            <div class="top-cart-item clearfix">
+                                                <div class="top-cart-item-image">
+                                                    <a href="#"><img src="{{$cart->product_image}}" alt="" /></a>
+                                                </div>
+                                                <div class="top-cart-item-desc">
+                                                    <a href="#" class="t400">{{$cart->name}}</a>
+                                                    <span class="top-cart-item-price">{{number_format($cart->price)}}</span>
+                                                    <span class="top-cart-item-quantity t600">x {{$cart->qty}}</span>
+                                                </div>
                                             </div>
-                                            <div class="top-cart-item-desc">
-                                                <a href="#" class="t400">{{$cart->name}}</a>
-                                                <span class="top-cart-item-price">{{$cart->price}}</span>
-                                                <span class="top-cart-item-quantity t600">x {{$cart->qty}}</span>
-                                            </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <div class="top-cart-action clearfix">
-                                    <span class="fleft top-checkout-price t600 text-dark">{{$cart_total}}</span>
+                                    <span class="fleft top-checkout-price t600 text-dark">{{number_format($cart_total)}}</span>
 
-                                    <a href="{{route('view.cart')}}"><button class="button button-dark button-small nomargin fright">View Cart</button></a>
+                                    <a href="{{route('view.cart')}}"><button class="button button-dark button-small nomargin fright" @if(\Gloudemans\Shoppingcart\Facades\Cart::content()->count() == 0) disabled  @endif>سبد خرید</button></a>
 
                                 </div>
                             </div>
@@ -113,14 +109,19 @@
 
                         <!-- Top Search
                         ============================================= -->
-                        <div id="top-account">
-                            <a href="#modal-register" data-lightbox="inline" ><i class="icon-line2-user mr-1 position-relative" style="top: 1px;"></i><span class="d-none d-sm-inline-block font-primary t500">Login</span></a>
-                        </div><!-- #top-search end -->
+                        {{--                        <div id="top-account">--}}
+                        {{--                            <a href="#modal-register" data-lightbox="inline" ><i class="icon-line2-user mr-1 position-relative" style="top: 1px;"></i><span class="d-none d-sm-inline-block font-primary t500">Login</span></a>--}}
+                        {{--                        </div><!-- #top-search end -->--}}
 
                     </nav><!-- #primary-menu end -->
 
                 </div>
-
+                @if(session('product-inventory'))
+                    <div class="alert alert-danger nobottommargin">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <i class="icon-remove-sign"></i><strong>وای بر من!</strong>{{session('product-inventory')}}
+                    </div>
+                @endif
             </div>
 
         </header><!-- #header end -->
@@ -162,12 +163,7 @@
                                         <div class="oc-item">
                                             <a href="#" data-image="2"><img class="image_fade" src="{{$product->product_image}}" alt="Gallery Thumb 2"></a>
                                         </div>
-                                        <div class="oc-item">
-                                            <a href="#" data-image="3"><img class="image_fade" src="{{$product->product_image}}" alt="Gallery Thumb 3"></a>
-                                        </div>
-                                        <div class="oc-item">
-                                            <a href="#" data-image="3"><img class="image_fade" src="{{$product->product_image}}" alt="Gallery Thumb 3"></a>
-                                        </div>
+
                                     </div>
                                 </div>
 
@@ -177,7 +173,7 @@
 
                                 <!-- Product Single - Price
                                 ============================================= -->
-                                <div class="product-price"><ins>{{$product->price}}</ins></div><!-- Product Single - Price End -->
+                                <div class="product-price"><ins>{{number_format($product->price)}}</ins></div><!-- Product Single - Price End -->
 
                                 <!-- Product Single - Rating
                                 ============================================= -->
@@ -194,16 +190,23 @@
 
                                 <!-- Product Single - Quantity & Cart Button
                                 ============================================= -->
-                                <form class="cart nobottommargin clearfix" method="post" enctype='multipart/form-data' action="{{route('add.cart',$product)}}">
+                                @if($product->inventory <= 0 )
+                                    <form class="cart nobottomborder clearfix">
+                                        <div class="quantity clearfix">
+                                            <div class="btn btn-outline-danger">!موجود نیست</div>
+                                        </div>
+                                    </form>
+                                @else
+                                <form class="cart nobottommargin clearfix" method="post" enctype='multipart/form-data' action="{{route('add.cart.details',$product)}}">
                                     @csrf
                                     <div class="quantity clearfix">
                                         <input type="button" value="-" class="minus">
                                         <input type="text" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="4" />
                                         <input type="button" value="+" class="plus">
                                     </div>
-                                    <button type="submit" class="add-to-cart button nomargin">Add to cart</button>
+                                    <button type="submit" class="add-to-cart button nomargin">اضافه به سبد خرید</button>
                                 </form><!-- Product Single - Quantity & Cart Button End -->
-
+                                @endif
                                 <div class="clear"></div>
                                 <div class="line"></div>
 
@@ -211,16 +214,16 @@
                                 ============================================= -->
                                 <p>{{$product->content}}</p>
                                 <ul class="iconlist">
-                                    <li><i class="icon-caret-right"></i> Dynamic Color Options</li>
-                                    <li><i class="icon-caret-right"></i> Lots of Size Options</li>
-                                    <li><i class="icon-caret-right"></i> 30-Day Return Policy</li>
+                                    <li><i class="icon-caret-right"></i>ارسال در کوتاه ترین زمان</li>
+                                    <li><i class="icon-caret-right"></i> ضمانت بازگشت کالا</li>
+                                    <li><i class="icon-caret-right"></i> پرداخت اینترنتی مطمعا</li>
                                 </ul><!-- Product Single - Short Description End -->
 
                                 <!-- Product Single - Meta
                                 ============================================= -->
                                 <div class="card product-meta">
                                     <div class="card-body">
-                                        <span itemprop="productID" class="sku_wrapper">SKU: <span class="sku">8465415</span></span>
+                                        <span itemprop="productID" class="sku_wrapper">موجودی: <span class="sku">{{$product->inventory}}</span></span>
                                         <span class="posted_in">Category: <a href="#" rel="tag">{{$product->category}}</a>.</span>
                                         <span class="tagged_as">Tags:@foreach($product->tags as $tag) <a href="#" rel="tag">{{$tag->name}}</a>@endforeach.</span>
                                     </div>
@@ -270,32 +273,32 @@
                                     <div class="fbox-icon">
                                         <i class="icon-thumbs-up2"></i>
                                     </div>
-                                    <h3>100% Original</h3>
-                                    <p class="notopmargin">We guarantee you the sale of Original Brands.</p>
+                                    <h3>100% کالا اصل</h3>
+                                    <p class="notopmargin">اطمینان از خرید.</p>
                                 </div>
 
                                 <div class="feature-box fbox-plain fbox-dark fbox-small">
                                     <div class="fbox-icon">
                                         <i class="icon-credit-cards"></i>
                                     </div>
-                                    <h3>Payment Options</h3>
-                                    <p class="notopmargin">We accept Visa, MasterCard and American Express.</p>
+                                    <h3> گزینه پرداخت اینترنتی</h3>
+                                    <p class="notopmargin">پرداخت راحت و مطمعا</p>
                                 </div>
 
                                 <div class="feature-box fbox-plain fbox-dark fbox-small">
                                     <div class="fbox-icon">
                                         <i class="icon-truck2"></i>
                                     </div>
-                                    <h3>Free Shipping</h3>
-                                    <p class="notopmargin">Free Delivery to 100+ Locations on orders above $40.</p>
+                                    <h3>ارسال رایگان در محدوده آمل</h3>
+                                    <p class="notopmargin">تمام سفارشات بالای 200 هزار تومان ارسال رایگان در محدوده مازندران.</p>
                                 </div>
 
                                 <div class="feature-box fbox-plain fbox-dark fbox-small">
                                     <div class="fbox-icon">
                                         <i class="icon-undo"></i>
                                     </div>
-                                    <h3>30-Days Returns</h3>
-                                    <p class="notopmargin">Return or exchange items purchased within 30 days.</p>
+                                    <h3>ضمانت بازگشت </h3>
+                                    <p class="notopmargin">هفت روز ضمانت بازگشت کالا.</p>
                                 </div>
 
                             </div>
@@ -375,20 +378,20 @@
 
                                                 <!-- Modal Reviews
                                                 ============================================= -->
-                                                <a href="#" data-toggle="modal" data-target="#reviewFormModal" class="button button-3d nomargin fright">Add a Review</a>
+                                                <a href="#" data-toggle="modal" data-target="#reviewFormModal" class="button button-3d nomargin fright">نوشتن بازخورد</a>
 
                                                 <div class="modal fade" id="reviewFormModal" tabindex="-1" role="dialog" aria-labelledby="reviewFormModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h4 class="modal-title" id="reviewFormModalLabel">Submit a Review</h4>
+                                                                <h4 class="modal-title" id="reviewFormModalLabel">ثبت بازخورد</h4>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form class="nobottommargin" id="template-reviewform" name="template-reviewform" action="{{route('create.review',$product)}}" method="post">
                                                                    @csrf
                                                                     <div class="col_half">
-                                                                        <label for="template-reviewform-name">Name <small>*</small></label>
+                                                                        <label for="template-reviewform-name">نام <small>*</small></label>
                                                                         <div class="input-group">
                                                                             <div class="input-group-prepend">
                                                                                 <div class="input-group-text"><i class="icon-user"></i></div>
@@ -398,7 +401,7 @@
                                                                     </div>
 
                                                                     <div class="col_half col_last">
-                                                                        <label for="template-reviewform-email">Email <small>*</small></label>
+                                                                        <label for="template-reviewform-email">ایمیل <small>*</small></label>
                                                                         <div class="input-group">
                                                                             <div class="input-group-prepend"><div class="input-group-text">@</div></div>
                                                                             <input type="email" id="template-reviewform-email" name="email" value="" class="required email form-control" />
@@ -408,9 +411,9 @@
                                                                     <div class="clear"></div>
 
                                                                     <div class="col_full col_last">
-                                                                        <label for="template-reviewform-rating">Rating</label>
+                                                                        <label for="template-reviewform-rating">امتیاز</label>
                                                                         <select id="template-reviewform-rating" name="rating" class="form-control">
-                                                                            <option value="0">-- Select One --</option>
+                                                                            <option value="">-- یک امتیاز انتخاب کنید --</option>
                                                                             <option value="1">1</option>
                                                                             <option value="2">2</option>
                                                                             <option value="3">3</option>
@@ -422,18 +425,18 @@
                                                                     <div class="clear"></div>
 
                                                                     <div class="col_full">
-                                                                        <label for="template-reviewform-comment">Comment <small>*</small></label>
+                                                                        <label for="template-reviewform-comment">توضیحات <small>*</small></label>
                                                                         <textarea class="required form-control" id="template-reviewform-comment" name="content" rows="6" cols="30"></textarea>
                                                                     </div>
 
                                                                     <div class="col_full nobottommargin">
-                                                                        <button class="button button-3d nomargin" type="submit" id="template-reviewform-submit" name="template-reviewform-submit" value="submit">Submit Review</button>
+                                                                        <button class="button button-3d nomargin" type="submit" id="template-reviewform-submit" name="template-reviewform-submit" value="submit"> ثبت بازحورد</button>
                                                                     </div>
 
                                                                 </form>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
                                                             </div>
                                                         </div><!-- /.modal-content -->
                                                     </div><!-- /.modal-dialog -->
@@ -458,24 +461,24 @@
 
                     <div class="col_full nobottommargin">
 
-                        <h4>Related Products</h4>
+                        <h4>محصولات مرتبط</h4>
 
                         <div id="oc-product" class="owl-carousel product-carousel carousel-widget" data-margin="30" data-pagi="false" data-items-xs="1" data-items-sm="2" data-items-md="3" data-items-xl="4">
 
+                            @foreach($related_products as $related_product)
                             <div class="oc-item">
                                 <div class="product iproduct clearfix">
                                     <div class="product-image">
-                                        <a href="#"><img src="images/shop/dress/1.jpg" alt="Checked Short Dress"></a>
-                                        <a href="#"><img src="images/shop/dress/1-1.jpg" alt="Checked Short Dress"></a>
-                                        <div class="sale-flash">50% Off*</div>
+                                        <a href="#"><img src="{{$related_product->product_image}}" alt="{{$related_product->name}}"></a>
+
                                         <div class="product-overlay">
-                                            <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                            <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+                                            <a href="{{route('add.cart.one',$related_product)}}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> اضافه به سبد خرید</span></a>
+                                            <a href="{{route('view',$related_product)}}" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> مشاهده محصول</span></a>
                                         </div>
                                     </div>
                                     <div class="product-desc center">
-                                        <div class="product-title"><h3><a href="#">Checked Short Dress</a></h3></div>
-                                        <div class="product-price"><del>$24.99</del> <ins>$12.49</ins></div>
+                                        <div class="product-title"><h3><a href="#">{{$related_product->name}}</a></h3></div>
+                                        <div class="product-price"><ins>تومان {{$related_product->price}}</ins></div>
                                         <div class="product-rating">
                                             <i class="icon-star3"></i>
                                             <i class="icon-star3"></i>
@@ -486,103 +489,7 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="oc-item">
-                                <div class="product iproduct clearfix">
-                                    <div class="product-image">
-                                        <a href="#"><img src="images/shop/pants/1-1.jpg" alt="Slim Fit Chinos"></a>
-                                        <a href="#"><img src="images/shop/pants/1.jpg" alt="Slim Fit Chinos"></a>
-                                        <div class="product-overlay">
-                                            <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                            <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-desc center">
-                                        <div class="product-title"><h3><a href="#">Slim Fit Chinos</a></h3></div>
-                                        <div class="product-price">$39.99</div>
-                                        <div class="product-rating">
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star-half-full"></i>
-                                            <i class="icon-star-empty"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="oc-item">
-                                <div class="product iproduct clearfix">
-                                    <div class="product-image">
-                                        <a href="#"><img src="images/shop/shoes/1-1.jpg" alt="Dark Brown Boots"></a>
-                                        <a href="#"><img src="images/shop/shoes/1.jpg" alt="Dark Brown Boots"></a>
-                                        <div class="product-overlay">
-                                            <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                            <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-desc center">
-                                        <div class="product-title"><h3><a href="#">Dark Brown Boots</a></h3></div>
-                                        <div class="product-price">$49</div>
-                                        <div class="product-rating">
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star-empty"></i>
-                                            <i class="icon-star-empty"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="oc-item">
-                                <div class="product iproduct clearfix">
-                                    <div class="product-image">
-                                        <a href="#"><img src="images/shop/dress/2.jpg" alt="Light Blue Denim Dress"></a>
-                                        <a href="#"><img src="images/shop/dress/2-2.jpg" alt="Light Blue Denim Dress"></a>
-                                        <div class="product-overlay">
-                                            <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                            <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-desc center">
-                                        <div class="product-title"><h3><a href="#">Light Blue Denim Dress</a></h3></div>
-                                        <div class="product-price">$19.95</div>
-                                        <div class="product-rating">
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star-empty"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="oc-item">
-                                <div class="product iproduct clearfix">
-                                    <div class="product-image">
-                                        <a href="#"><img src="images/shop/sunglasses/1.jpg" alt="Unisex Sunglasses"></a>
-                                        <a href="#"><img src="images/shop/sunglasses/1-1.jpg" alt="Unisex Sunglasses"></a>
-                                        <div class="sale-flash">Sale!</div>
-                                        <div class="product-overlay">
-                                            <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                            <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-desc center">
-                                        <div class="product-title"><h3><a href="#">Unisex Sunglasses</a></h3></div>
-                                        <div class="product-price"><del>$19.99</del> <ins>$11.99</ins></div>
-                                        <div class="product-rating">
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star3"></i>
-                                            <i class="icon-star-empty"></i>
-                                            <i class="icon-star-empty"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
 
                         </div>
 

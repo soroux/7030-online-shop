@@ -12,7 +12,7 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="{{route('home')}}" class="standard-logo"><img src="{{asset('css/shop/images/logo.png')}}" alt="Canvas Logo"></a>
+                        <a href="{{route('home')}}" class="standard-logo"><img src="{{asset('css/shop/images/logo@2x.png')}}" alt="Canvas Logo"></a>
                         <a href="{{route('home')}}" class="retina-logo"><img src="{{asset('css/shop/images/logo@2x.png')}}" alt="Canvas Logo"></a>
                     </div><!-- #logo end -->
 
@@ -26,7 +26,7 @@
                             ============================================= -->
                             <li><a href="#"><div>محصولات</div></a>
                                 <div class="mega-menu-content style-2 clearfix">
-                                    <ul class="mega-menu-column border-left-0 col-lg-6">
+                                    <ul class="mega-menu-column border-left-0 col-lg-12">
                                         <li class="mega-menu-title"><a href="{{route('shop')}}"><div>تمام محصولات</div></a>
                                             <ul>
                                                 <li><a href="{{route('shop')}}"><div>تجهیزات دم آوری</div></a></li>
@@ -38,9 +38,9 @@
                                     </ul>
                                 </div>
                             </li><!-- .mega-menu end -->
-                            <li><a href="{{route('blog')}}"><div>آموزش ها</div></a>
+                            <li><a href="#"><div>آموزش ها</div></a>
                                 <div class="mega-menu-content style-2 clearfix">
-                                    <ul class="mega-menu-column col-lg-6">
+                                    <ul class="mega-menu-column col-lg-12">
                                         <li class="mega-menu-title"><a href="{{route('blog')}}"><div>همه پست ها</div></a>
                                             <ul>
                                                 <li><a href="{{route('blog')}}"><div>آموزش دم آوری</div></a></li>
@@ -52,19 +52,19 @@
                                 </div>
                             </li><!-- .mega-menu end -->
                             <li><a href="{{route('shop')}}"><div>فروشگاه</div></a></li>
-                            <li><a href="#"><div>تماس با ما</div></a></li>
+                            <li><a href="{{route('contacts')}}"><div>تماس با ما</div></a></li>
 
-                            <li><a href="#"><div>درباره ما</div></a></li>
+                            <li><a href="{{route('about')}}"><div>درباره ما</div></a></li>
                         </ul>
 
                         <!-- Top Search
                         ============================================= -->
-                        <div id="top-search">
-                            <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i class="icon-line-cross"></i></a>
-                            <form action="search.html" method="get">
-                                <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
-                            </form>
-                        </div><!-- #top-search end -->
+{{--                        <div id="top-search">--}}
+{{--                            <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i class="icon-line-cross"></i></a>--}}
+{{--                            <form action="search.html" method="get">--}}
+{{--                                <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">--}}
+{{--                            </form>--}}
+{{--                        </div><!-- #top-search end -->--}}
 
                         <!-- Top CartController
                         ============================================= -->
@@ -77,6 +77,13 @@
                                 </div>
 
                                 <div class="top-cart-items">
+                                    @if(\Gloudemans\Shoppingcart\Facades\Cart::content()->count() == 0)
+                                        <tr class="top-cart-item clearfix">
+                                            <td class="top-cart-item-name">
+                                                <h5 class="alert-danger">سبد خرید شما خالیست</h5>
+                                            </td>
+                                        </tr>
+                                    @else
                                     @foreach($carts as $cart)
                                         <div class="top-cart-item clearfix">
                                             <div class="top-cart-item-image">
@@ -84,16 +91,17 @@
                                             </div>
                                             <div class="top-cart-item-desc">
                                                 <a href="#" class="t400">{{$cart->name}}</a>
-                                                <span class="top-cart-item-price">{{$cart->price}}</span>
+                                                <span class="top-cart-item-price">{{number_format($cart->price)}}</span>
                                                 <span class="top-cart-item-quantity t600">x {{$cart->qty}}</span>
                                             </div>
                                         </div>
                                     @endforeach
+                                    @endif
                                 </div>
                                 <div class="top-cart-action clearfix">
-                                    <span class="fleft top-checkout-price t600 text-dark">{{$cart_total}}</span>
+                                    <span class="fleft top-checkout-price t600 text-dark">{{number_format($cart_total)}}</span>
 
-                                    <a href="{{route('view.cart')}}"><button class="button button-dark button-small nomargin fright">View Cart</button></a>
+                                    <a href="{{route('view.cart')}}"><button class="button button-dark button-small nomargin fright" @if(\Gloudemans\Shoppingcart\Facades\Cart::content()->count() == 0) disabled  @endif>سبد خرید</button></a>
 
                                 </div>
                             </div>
@@ -102,13 +110,20 @@
 
                         <!-- Top Search
                         ============================================= -->
-                        <div id="top-account">
-                            <a href="#modal-register" data-lightbox="inline" ><i class="icon-line2-user mr-1 position-relative" style="top: 1px;"></i><span class="d-none d-sm-inline-block font-primary t500">Login</span></a>
-                        </div><!-- #top-search end -->
+{{--                        <div id="top-account">--}}
+{{--                            <a href="#modal-register" data-lightbox="inline" ><i class="icon-line2-user mr-1 position-relative" style="top: 1px;"></i><span class="d-none d-sm-inline-block font-primary t500">Login</span></a>--}}
+{{--                        </div><!-- #top-search end -->--}}
 
                     </nav><!-- #primary-menu end -->
 
                 </div>
+
+                @if(session('product-inventory'))
+                    <div class="alert alert-danger nobottommargin">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <i class="icon-remove-sign"></i><strong>وای بر من!</strong>{{session('product-inventory')}}
+                    </div>
+                @endif
 
             </div>
 
@@ -146,12 +161,12 @@
                     <!-- Shop Categories
                     ============================================= -->
                     <div class="fancy-title title-dotted-border title-center mb-4">
-                        <h4>Shop popular categories</h4>
+                        <h4>دسته بندی های برتر</h4>
                     </div>
 
                     <div class="row shop-categories clearfix">
                         <div class="col-lg-7">
-                            <a href="#" style="background: url({{asset('css/shop/images/categories/coffeebag.jpg')}}) no-repeat right center; background-size: cover;">
+                            <a href="{{route('shop')}}" style="background: url({{asset('images/coffee.jpg')}}) no-repeat right center; background-size: cover;">
                                 <div class="vertical-middle dark center">
                                     <div class="heading-block nomargin noborder">
                                         <h3 class="nott t600 ls0">دان قهوه</h3>
@@ -160,7 +175,7 @@
                             </a>
                         </div>
                         <div class="col-lg-5">
-                            <a href="#" style="background: url({{asset('css/shop/images/categories/coffee-group.jpg')}}) no-repeat center right; background-size: cover;">
+                            <a href="{{route('shop')}}" style="background: url({{asset('images/coffee-group.jpg')}}) no-repeat center right; background-size: cover;">
                                 <div class="vertical-middle dark center">
                                     <div class="heading-block nomargin noborder">
                                         <h3 class="nott t600 ls0">تجهیزات دم آوری</h3>
@@ -170,11 +185,11 @@
                         </div>
 @foreach($categories as $category)
                         <div class="col-lg-4">
-                            <a href="#" style="background: url({{$category->popular_categories}}) no-repeat center center; background-size: cover;">
+                            <a href="{{route('shop')}}" style="background: url({{$category->popular_categories}}) no-repeat center center; background-size: cover;">
                                 <div class="vertical-middle dark center">
                                     <div class="heading-block nomargin noborder">
                                         <h3 class="nott t600 ls0">{{$category->text}}</h3>
-                                        <small class="button bg-white text-dark button-light button-mini">Browse Now</small>
+                                        <small class="button bg-white text-dark button-light button-mini">دیدن محصولات</small>
                                     </div>
                                 </div>
                             </a>
@@ -191,6 +206,30 @@
 
                     <div id="oc-products" class="owl-carousel products-carousel carousel-widget" data-margin="20" data-loop="false" data-autoplay="5000" data-nav="true" data-pagi="false" data-items-xs="1" data-items-sm="2" data-items-md="3" data-items-lg="4" data-items-xl="5">
                     @foreach($special_products as $special_product)
+                        @if($special_product->inventory <= 0)
+                                <div class="oc-item">
+                                    <div class="product iproduct clearfix">
+                                        <div class="product-image">
+                                            <a href="#"><img src="{{$special_product->product_image}}" alt=""></a>
+                                            <div class="product-overlay">
+                                                <a href="{{route('quick.view',$special_product)}}" class="item-quick-view" data-lightbox="ajax"><i class="icon-line-search"></i><span>Quick View</span></a>
+                                            </div>
+                                        </div>
+                                        <div class="sale-flash bg-danger">!موجود نیست</div>
+                                        <div class="product-desc">
+                                            <div class="product-title mb-1"><h3><a href="#">{{$special_product->name}}</a></h3></div>
+                                            <div class="product-price font-primary"><ins>{{number_format($special_product->price)}}</ins></div>
+                                            <div class="product-rating">
+                                                <i class="icon-star3"></i>
+                                                <i class="icon-star3"></i>
+                                                <i class="icon-star3"></i>
+                                                <i class="icon-star3"></i>
+                                                <i class="icon-star-empty"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
                         <!-- Shop Item 1
                         ============================================= -->
                         <div class="oc-item">
@@ -205,7 +244,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <div class="product-title mb-1"><h3><a href="#">{{$special_product->name}}</a></h3></div>
-                                    <div class="product-price font-primary">{{$special_product->price}}</div>
+                                    <div class="product-price font-primary">{{number_format($special_product->price)}}</div>
                                     <div class="product-rating">
                                         <i class="icon-star3"></i>
                                         <i class="icon-star3"></i>
@@ -216,6 +255,7 @@
                                 </div>
                             </div>
                         </div>
+                            @endif
                     @endforeach
 
                     </div>
@@ -228,11 +268,37 @@
                 <div class="container clearfix">
 
                     <div class="fancy-title title-dotted-border topmargin-sm mb-4 title-center">
-                        <h4>New Arrivals: Men</h4>
+                        <h4>جدبد ترین محصولات</h4>
                     </div>
 
                     <div class="row grid-6">
 @foreach($products as $product)
+    @if($product->inventory <= 0)
+        <!-- Shop Item 1
+                        ============================================= -->
+            <div class="col-lg-2 col-md-3 col-6 px-2">
+                <div class="product iproduct clearfix">
+                    <div class="product-image">
+                        <a href="#"><img src="{{$product->product_image}}" alt="Image 1"></a>
+                        <div class="product-overlay">
+                            <a href="{{route('quick.view',$product)}}" class="item-quick-view" data-lightbox="ajax"><i class="icon-line-search"></i><span>Quick View</span></a>
+                        </div>
+                    </div>
+                    <div class="sale-flash bg-danger">!موجود نیست</div>
+                    <div class="product-desc">
+                        <div class="product-title mb-1"><h3><a href="#">{{$product->name}}</a></h3></div>
+                        <div class="product-price font-primary">{{number_format($product->price)}}</div>
+                        <div class="product-rating">
+                            <i class="icon-star3"></i>
+                            <i class="icon-star3"></i>
+                            <i class="icon-star3"></i>
+                            <i class="icon-star-half-full"></i>
+                            <i class="icon-star-empty"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    @else
                         <!-- Shop Item 1
                         ============================================= -->
                         <div class="col-lg-2 col-md-3 col-6 px-2">
@@ -246,7 +312,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <div class="product-title mb-1"><h3><a href="#">{{$product->name}}</a></h3></div>
-                                    <div class="product-price font-primary">{{$product->price}}</div>
+                                    <div class="product-price font-primary">{{number_format($product->price)}}</div>
                                     <div class="product-rating">
                                         <i class="icon-star3"></i>
                                         <i class="icon-star3"></i>
@@ -257,6 +323,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
 @endforeach
                         <!-- Shop Item 2
                         ============================================= -->
@@ -325,17 +392,10 @@
                             <div class="accordion clearfix">
 
                                 <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>هدف ما</div>
-                                <div class="acc_content clearfix">ایجاد پلتفرمی مطمعا برای خرید قهوه و تجهیزات </div>
+                                <div class="acc_content clearfix">ایجاد پلتفرمی مطمعا برای خرید قهوه و تجهیزات دم آوری </div>
 
-                                <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>What we Do?</div>
-                                <div class="acc_content clearfix">Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum.</div>
-
-                                <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Our Company's Values</div>
-                                <div class="acc_content clearfix">Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus. Aenean lacinia bibendum nulla sed consectetur.</div>
-
-                                <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>Our Return Policy</div>
-                                <div class="acc_content clearfix">Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum.</div>
-
+                                <div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>کار ما</div>
+                                <div class="acc_content clearfix">تهیه و بسته بندی قهوه تازه رست و خرید تجهیزات دسته مرغوب از وارد کننده های معتبر </div>
                             </div>
                         </div>
 
@@ -387,13 +447,13 @@
 
                         <div class="row clearfix">
                             <div class="col-lg-4 col-md-6">
-                                <div class="shop-footer-features mb-3 mb-lg-3"><i class="icon-line2-globe-alt"></i><h5 class="inline-block mb-0 ml-2 t600"><a href="#">ارسال زایگان</a><span class="t400 text-muted"> &amp; بازگشت آسان</span></h5></div>
+                                <div class="shop-footer-features mb-3 mb-lg-3"><i class="icon-line2-globe-alt"></i><h5 class="inline-block mb-0 ml-2 t600"> ارسال رایگان<span class="t400 text-muted"> در محدوده آمل </span></h5></div>
                             </div>
                             <div class="col-lg-4 col-md-6">
-                                <div class="shop-footer-features mb-3 mb-lg-3"><i class="icon-line2-notebook"></i><h5 class="inline-block mb-0 ml-2"><a href="#">مجصولات با کیفیت</a><span class="t400 text-muted"> گارانتی </span></h5></div>
+                                <div class="shop-footer-features mb-3 mb-lg-3"><i class="icon-line2-notebook"></i><h5 class="inline-block mb-0 ml-2"> گارانتی<span class="t400 text-muted"> بازگشت </span></h5></div>
                             </div>
                             <div class="col-lg-4 col-md-12">
-                                <div class="shop-footer-features mb-3 mb-lg-3"><i class="icon-line2-lock"></i><h5 class="inline-block mb-0 ml-2"><a href="#">256-Bit</a> <span class="t400 text-muted">پرداحت مطمعا</span></h5></div>
+                                <div class="shop-footer-features mb-3 mb-lg-3"><i class="icon-line2-lock"></i><h5 class="inline-block mb-0 ml-2">256-Bit <span class="t400 text-muted">پرداخت مطمعا</span></h5></div>
                             </div>
                         </div>
 

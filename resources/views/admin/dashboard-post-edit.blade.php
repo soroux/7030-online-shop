@@ -35,13 +35,13 @@
                             <input type="file" name="image" class="form-control-file" id="image">
                         </div>
 
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="tag">
-                            <option selected>Choose tag</option>
-                            @foreach($tags as $tag)
-                                <option value="{{$tag->id}}">{{$tag->name}}</option>
-                            @endforeach
+{{--                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="tag">--}}
+{{--                            <option selected value="">choose one</option>--}}
+{{--                            @foreach($tags as $tag)--}}
+{{--                                <option value="{{$tag->id}}">{{$tag->name}}</option>--}}
+{{--                            @endforeach--}}
 
-                        </select>
+{{--                        </select>--}}
                         <div class="form-group">
                             <label for="content">content</label>
                             <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{$post->content}}</textarea>

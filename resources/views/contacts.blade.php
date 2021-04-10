@@ -1,5 +1,6 @@
 <x-home-master>
-@section('content')
+    @section('content')
+
         <header id="header" class="full-header clearfix">
 
             <div id="header-wrap">
@@ -103,7 +104,6 @@
                                     <a href="{{route('view.cart')}}"><button class="button button-dark button-small nomargin fright" @if(\Gloudemans\Shoppingcart\Facades\Cart::content()->count() == 0) disabled  @endif>سبد خرید</button></a>
 
                                 </div>
-
                             </div>
 
                         </div><!-- #top-cart end -->
@@ -117,141 +117,124 @@
                     </nav><!-- #primary-menu end -->
 
                 </div>
-                @if(session('product-inventory'))
-                    <div class="alert alert-danger nobottommargin">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <i class="icon-remove-sign"></i><strong>وای بر من!</strong>{{session('product-inventory')}}
-                    </div>
-                @endif
+
             </div>
 
         </header><!-- #header end -->
 
+        <!-- Page Title
+            ============================================= -->
         <section id="page-title">
 
             <div class="container clearfix">
-                <h1>مراحل خرید</h1>
-
+                <h1>Contact</h1>
+                <span>Get in Touch with Us</span>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">خانه</a></li>
-                    <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">مشاهده سبد خرید</li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact</li>
                 </ol>
             </div>
 
         </section><!-- #page-title end -->
 
-        <!-- Content
+
+        <!-- Contact Form & Map Overlay Section
         ============================================= -->
-        <section id="content">
+        <section id="map-overlay">
 
-            <div class="content-wrap">
+            <div class="container clearfix">
 
-                <div class="container clearfix">
+                <!-- Contact Form Overlay
+                ============================================= -->
+                <div id="contact-form-overlay" class="clearfix">
 
-                    <div id="processTabs">
-                        <ul class="process-steps bottommargin clearfix">
-                            <li>
-                                <a href="#" class="i-circled i-bordered i-alt divcenter bgcolor">1</a>
-                                <h5>سبد خرید</h5>
-                            </li>
-                            <li>
-                                <a href="#" class="i-circled i-bordered i-alt divcenter ">2</a>
-                                <h5>تکمیل اطلاعات</h5>
-                            </li>
-                            <li>
-                                <a href="#" class="i-circled i-bordered i-alt divcenter ">3</a>
-                                <h5>پرداخت و تکمیل سفارش</h5>
-                            </li>
-                        </ul>
+                    <div class="fancy-title title-dotted-border">
+                        <h3>برای ما ایمیل بفرستید</h3>
                     </div>
-                            <div id="ptab1">
-                                <div class="alert alert-warning">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                    <i class="icon-warning-sign"></i><strong>توجه!</strong>درصورت تغییر تعداد هر محصول حتما دکمه اعمال تغییر را فشار دهید
-                                </div>
 
+                    <div class="form-widget">
 
-                                <div class="table-responsive">
-                                    <table class="table cart">
-                                        <thead>
-                                        <tr>
-                                            <th class="cart-product-remove">&nbsp;</th>
-                                            <th class="cart-product-thumbnail">&nbsp;</th>
-                                            <th class="cart-product-name">نام محصول</th>
-                                            <th class="cart-product-price">قیمت</th>
-                                            <th class="cart-product-quantity">تعداد</th>
-                                            <th class="cart-product-quantity">ویرایش</th>
-                                            <th class="cart-product-subtotal">قیمت کل</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @if(\Gloudemans\Shoppingcart\Facades\Cart::content()->count() == 0)
-                                            <tr class="cart_item">
-                                                <td class="cart-product-name">
-                                                    <h2 class="alert-danger">محصولی جهت نمایش وجود ندارد</h2>
-                                                </td>
-                                            </tr>
-                                        @else
-                                        @foreach($carts as $cart)
-                                        <tr class="cart_item">
-                                            <td class="cart-product-remove">
-                                                <a href="{{route('remove.cart',$cart->rowId)}}" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
-                                            </td>
+                        <div class="form-result"></div>
 
-                                            <td class="cart-product-thumbnail">
-                                                <a href="#"><img width="64" height="64" src="{{$cart->product_image}}" alt="Pink Printed Dress"></a>
-                                            </td>
+                        <!-- Contact Form
+                        ============================================= -->
+                        <form class="nobottommargin" id="template-contactform" name="template-contactform" action="include/form.php" method="post">
 
-                                            <td class="cart-product-name">
-                                                <a href="#">{{$cart->name}}</a>
-                                            </td>
-
-                                            <td class="cart-product-price">
-                                                <span class="amount">{{number_format($cart->price)}}</span>
-                                            </td>
-                                            <form method="post" action="{{route('update.cart')}}">
-                                                @method('patch')
-                                                @csrf
-                                            <td class="cart-product-quantity">
-                                                <div class="quantity clearfix">
-                                                    <input type="button" value="-" class="minus">
-                                                    <input type="text" step="1" min="1"  name="quantity" value="{{$cart->qty}}" title="Qty" class="qty" size="4" />
-                                                    <input type="button" value="+" class="plus">
-                                                </div>
-
-                                            </td>
-                                                <td class="cart-product-quantity">
-                                                    <input type="hidden" value="{{$cart->id}}" name="product_id">
-                                                    <button value="{{$cart->rowId}}" class="btn btn-outline-primary" name="id">ثبت تعداد جدید</button>
-                                                </td>
-                                            </form>
-                                            <td class="cart-product-subtotal">
-                                                <span class="amount">{{number_format($cart->total())}}</span>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                            @endif
-                                        </tbody>
-
-                                    </table>
-                                </div>
-
-                                    <a href="{{route('ship.info')}}"> <button class="button button-3d nomargin fright tab-linker" rel="2"  @if(\Gloudemans\Shoppingcart\Facades\Cart::content()->count() == 0) disabled  @endif >Checkout &rArr;</button></a>
-
+                            <div class="col_half">
+                                <label for="template-contactform-name">اسم <small>*</small></label>
+                                <input type="text" id="template-contactform-name" name="template-contactform-name" value="" class="sm-form-control required" />
                             </div>
-                        </div>
+
+                            <div class="col_half col_last">
+                                <label for="template-contactform-email">آدرس ایمیل <small>*</small></label>
+                                <input type="email" id="template-contactform-email" name="template-contactform-email" value="" class="required email sm-form-control" />
+                            </div>
+
+                            <div class="clear"></div>
+
+                            <div class="col_half">
+                                <label for="template-contactform-phone">شماره تلفن</label>
+                                <input type="text" id="template-contactform-phone" name="template-contactform-phone" value="" class="sm-form-control" />
+                            </div>
+
+                            <div class="clear"></div>
+
+                            <div class="col_full">
+                                <label for="template-contactform-subject">عنوان <small>*</small></label>
+                                <input type="text" id="template-contactform-subject" name="subject" value="" class="required sm-form-control" />
+                            </div>
+
+                            <div class="col_full">
+                                <label for="template-contactform-message">پیام <small>*</small></label>
+                                <textarea class="required sm-form-control" id="template-contactform-message" name="template-contactform-message" rows="6" cols="30"></textarea>
+                            </div>
+
+                            <div class="col_full hidden">
+                                <input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="sm-form-control" />
+                            </div>
+
+                            <div class="col_full">
+                                <button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit">Send Message</button>
+                            </div>
+
+                            <input type="hidden" name="prefix" value="template-contactform-">
+
+                        </form>
                     </div>
 
-                    <div class="clear"></div>
 
-                    <div class="divider divider-center"><i class="icon-circle"></i></div>
+                    <div class="line"></div>
+
+                    <!-- Contact Info
+                    ============================================= -->
+                    <div class="col_one_third nobottommargin">
+
+                        <address>
+                            <strong>آدرس:</strong><br>
+                            مازندران،آمل<br>
+                           خیابان فرهنگوفروشگاه 7030<br>
+                        </address>
+                        <abbr title="Phone Number"><strong>تلفن:</strong></abbr> (+98) 4458 3637<br>
+                        <abbr title="Fax"><strong>همراه:</strong></abbr> (0) 935 864 1616<br>
+                        <abbr title="Email Address"><strong>ایمبا:</strong></abbr> doroudh.ganjiu@gmail.com
+
+                    </div><!-- Contact Info End -->
+
+                    <!-- Testimonails
+                    ============================================= -->
 
 
-                </div>
+                </div><!-- Contact Form Overlay End -->
 
             </div>
 
-        </section><!-- #content end -->
+            <!-- Google Map
+            ============================================= -->
+            <section id="google-map" class="gmap">
+
+            </section>
+
+
+        </section><!-- Contact Form & Map Overlay Section End -->
     @endsection
 </x-home-master>

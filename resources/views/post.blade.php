@@ -12,7 +12,7 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="{{route('home')}}" class="standard-logo"><img src="{{asset('css/shop/images/logo.png')}}" alt="Canvas Logo"></a>
+                        <a href="{{route('home')}}" class="standard-logo"><img src="{{asset('css/shop/images/logo@2x.png')}}" alt="Canvas Logo"></a>
                         <a href="{{route('home')}}" class="retina-logo"><img src="{{asset('css/shop/images/logo@2x.png')}}" alt="Canvas Logo"></a>
                     </div><!-- #logo end -->
 
@@ -26,7 +26,7 @@
                             ============================================= -->
                             <li><a href="#"><div>محصولات</div></a>
                                 <div class="mega-menu-content style-2 clearfix">
-                                    <ul class="mega-menu-column border-left-0 col-lg-6">
+                                    <ul class="mega-menu-column border-left-0 col-lg-12">
                                         <li class="mega-menu-title"><a href="{{route('shop')}}"><div>تمام محصولات</div></a>
                                             <ul>
                                                 <li><a href="{{route('shop')}}"><div>تجهیزات دم آوری</div></a></li>
@@ -38,9 +38,9 @@
                                     </ul>
                                 </div>
                             </li><!-- .mega-menu end -->
-                            <li><a href="{{route('blog')}}"><div>آموزش ها</div></a>
+                            <li><a href="#"><div>آموزش ها</div></a>
                                 <div class="mega-menu-content style-2 clearfix">
-                                    <ul class="mega-menu-column col-lg-6">
+                                    <ul class="mega-menu-column col-lg-12">
                                         <li class="mega-menu-title"><a href="{{route('blog')}}"><div>همه پست ها</div></a>
                                             <ul>
                                                 <li><a href="{{route('blog')}}"><div>آموزش دم آوری</div></a></li>
@@ -52,21 +52,21 @@
                                 </div>
                             </li><!-- .mega-menu end -->
                             <li><a href="{{route('shop')}}"><div>فروشگاه</div></a></li>
-                            <li><a href="#"><div>تماس با ما</div></a></li>
+                            <li><a href="{{route('contacts')}}"><div>تماس با ما</div></a></li>
 
-                            <li><a href="#"><div>درباره ما</div></a></li>
+                            <li><a href="{{route('about')}}"><div>درباره ما</div></a></li>
                         </ul>
 
                         <!-- Top Search
                         ============================================= -->
-                        <div id="top-search">
-                            <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i class="icon-line-cross"></i></a>
-                            <form action="search.html" method="get">
-                                <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
-                            </form>
-                        </div><!-- #top-search end -->
+                    {{--                        <div id="top-search">--}}
+                    {{--                            <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i class="icon-line-cross"></i></a>--}}
+                    {{--                            <form action="search.html" method="get">--}}
+                    {{--                                <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">--}}
+                    {{--                            </form>--}}
+                    {{--                        </div><!-- #top-search end -->--}}
 
-                        <!-- Top CartController
+                    <!-- Top CartController
                         ============================================= -->
                         <div id="top-cart">
                             <a href="#" id="top-cart-trigger"><i class="icon-line-bag"></i><span>{{\Gloudemans\Shoppingcart\Facades\Cart::content()->count()}}</span></a>
@@ -77,23 +77,31 @@
                                 </div>
 
                                 <div class="top-cart-items">
-                                    @foreach($carts as $cart)
-                                        <div class="top-cart-item clearfix">
-                                            <div class="top-cart-item-image">
-                                                <a href="#"><img src="{{$cart->product_image}}" alt="" /></a>
+                                    @if(\Gloudemans\Shoppingcart\Facades\Cart::content()->count() == 0)
+                                        <tr class="top-cart-item clearfix">
+                                            <td class="top-cart-item-name">
+                                                <h5 class="alert-danger">سبد خرید شما خالیست</h5>
+                                            </td>
+                                        </tr>
+                                    @else
+                                        @foreach($carts as $cart)
+                                            <div class="top-cart-item clearfix">
+                                                <div class="top-cart-item-image">
+                                                    <a href="#"><img src="{{$cart->product_image}}" alt="" /></a>
+                                                </div>
+                                                <div class="top-cart-item-desc">
+                                                    <a href="#" class="t400">{{$cart->name}}</a>
+                                                    <span class="top-cart-item-price">{{number_format($cart->price)}}</span>
+                                                    <span class="top-cart-item-quantity t600">x {{$cart->qty}}</span>
+                                                </div>
                                             </div>
-                                            <div class="top-cart-item-desc">
-                                                <a href="#" class="t400">{{$cart->name}}</a>
-                                                <span class="top-cart-item-price">{{$cart->price}}</span>
-                                                <span class="top-cart-item-quantity t600">x {{$cart->qty}}</span>
-                                            </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <div class="top-cart-action clearfix">
-                                    <span class="fleft top-checkout-price t600 text-dark">{{$cart_total}}</span>
+                                    <span class="fleft top-checkout-price t600 text-dark">{{number_format($cart_total)}}</span>
 
-                                    <a href="{{route('view.cart')}}"><button class="button button-dark button-small nomargin fright">View Cart</button></a>
+                                    <a href="{{route('view.cart')}}"><button class="button button-dark button-small nomargin fright" @if(\Gloudemans\Shoppingcart\Facades\Cart::content()->count() == 0) disabled  @endif>سبد خرید</button></a>
 
                                 </div>
                             </div>
@@ -102,9 +110,9 @@
 
                         <!-- Top Search
                         ============================================= -->
-                        <div id="top-account">
-                            <a href="#modal-register" data-lightbox="inline" ><i class="icon-line2-user mr-1 position-relative" style="top: 1px;"></i><span class="d-none d-sm-inline-block font-primary t500">Login</span></a>
-                        </div><!-- #top-search end -->
+                        {{--                        <div id="top-account">--}}
+                        {{--                            <a href="#modal-register" data-lightbox="inline" ><i class="icon-line2-user mr-1 position-relative" style="top: 1px;"></i><span class="d-none d-sm-inline-block font-primary t500">Login</span></a>--}}
+                        {{--                        </div><!-- #top-search end -->--}}
 
                     </nav><!-- #primary-menu end -->
 

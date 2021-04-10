@@ -8,10 +8,13 @@
     <div class="product modal-padding clearfix">
 
         <div class="col_half nobottommargin">
+
             <div class="product-image">
                 <div class="fslider" data-pagi="false">
                     <div class="flexslider">
+
                         <div class="slider-wrap">
+
                             <div class="slide"><a href="#" title="Pink Printed Dress - Front View"><img src="{{$product->product_image}}" alt="Pink Printed Dress"></a></div>
 
                         </div>
@@ -34,6 +37,13 @@
 
             <!-- Product Single - Quantity & Cart Button
             ============================================= -->
+            @if($product->inventory <= 0 )
+                <form class="cart nobottomborder clearfix">
+                    <div class="quantity clearfix">
+                <div class="btn btn-outline-danger">!موجود نیست</div>
+                    </div>
+                </form>
+            @else
             <form class="cart nobottommargin clearfix" method="post" enctype='multipart/form-data' action="{{route('add.cart',$product)}}">
                 @csrf
                 <div class="quantity clearfix">
@@ -43,22 +53,26 @@
                 </div>
               <button type="submit" class="add-to-cart button nomargin">Add to cart</button>
             </form><!-- Product Single - Quantity & Cart Button End -->
-
+            @endif
             <div class="clear"></div>
             <div class="line"></div>
             <p>{{$product->content}}</p>
+            <div class="clear"></div>
+            <div class="line"></div>
             <a href="{{route('view',$product)}}"><button type="button" class="btn btn-outline-dark">مشاهده محصول</button></a>
+            <div class="clear"></div>
+            <div class="line"></div>
             <ul class="iconlist">
 
-                <li><i class="icon-caret-right"></i> Dynamic Color Options</li>
-                <li><i class="icon-caret-right"></i> Lots of Size Options</li>
-                <li><i class="icon-caret-right"></i> 30-Day Return Policy</li>
+                <li><i class="icon-caret-right"></i>ارسال در کوتاه ترین زمان</li>
+                <li><i class="icon-caret-right"></i> ضمانت بازگشت کالا</li>
+                <li><i class="icon-caret-right"></i> پرداخت اینترنتی مطمعا</li>
             </ul>
             <div class="card product-meta nobottommargin">
                 <div class="card-body">
-                    <span itemprop="productID" class="sku_wrapper">SKU: <span class="sku">8465415</span></span>
-                    <span class="posted_in">Category::<a href="#" rel="tag">{{$product->category}}</a>.</span>
-                    <span class="tagged_as">Tags:@foreach($product->tags as $tag) <a href="#" rel="tag">{{$tag->name}}</a>@endforeach.</span>
+                    <span itemprop="productID" class="sku_wrapper">موجودی : <span class="sku">{{$product->inventory}}</span></span>
+                    <span class="posted_in">  دسته بندی :<a href="#" rel="tag">{{$product->category}}</a>.</span>
+                    <span class="tagged_as">تگ :@foreach($product->tags as $tag) <a href="#" rel="tag">{{$tag->name}}</a>@endforeach.</span>
                 </div>
             </div>
         </div>

@@ -53,7 +53,7 @@
                                     @foreach($receipts as $receipt)
                                         <tr>
                                             <td>{{$receipt->pay_name."-".$receipt->pay_lastname}}</td>
-                                            <td>{{$receipt->amount}}</td>
+                                            <td>{{number_format($receipt->amount)}}</td>
                                             <td>{{$receipt->pay_phone}}</td>
                                             <td>{{$receipt->ship_city}}</td>
                                             <td>{{$receipt->status}}</td>

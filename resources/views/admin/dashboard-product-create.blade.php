@@ -13,13 +13,14 @@
                 <div class="container-fluid">
                     <h3>Create</h3>
                     <!-- Page Heading -->
-
+                    @error('name') <span class="alert alert-danger">{{ $message }}</span> @enderror
                     <form  method="post" action="{{route('dashboard.product.store')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
                             <label for="product_name">Product Name</label>
                             <input type="text" name="name" class="form-control" id="name" aria-describedby="" placeholder="Enter Product Name">
+
                         </div>
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="category">
                             <option selected>Choose Category</option>
@@ -47,7 +48,7 @@
                             <input type="number" name="price" class="form-control" id="price" aria-describedby="" placeholder="Enter Product Price $">
                         </div>
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="tag">
-                            <option selected>Choose tag</option>
+                            <option selected value="">Choose tag</option>
                             @foreach($tags as $tag)
                             <option value="{{$tag->id}}">{{$tag->name}}</option>
                             @endforeach

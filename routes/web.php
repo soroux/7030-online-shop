@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[\App\Http\Controllers\HomeController::class,'index'])->name('home');
 Route::get('/shop',[\App\Http\Controllers\HomeController::class,'shop'])->name('shop');
 Route::get('/blog',[\App\Http\Controllers\HomeController::class,'blog'])->name('blog');
+Route::get('/contacts',[\App\Http\Controllers\HomeController::class,'contacts'])->name('contacts');
+Route::get('/about',[\App\Http\Controllers\HomeController::class,'about'])->name('about');
+
 Route::get('/blog/{post}/post',[\App\Http\Controllers\HomeController::class,'viewPost'])->name('blog.post');
 Route::post('/blog/{post}/comment',[\App\Http\Controllers\HomeController::class,'createComment'])->name('create.comment');
 
@@ -29,12 +32,15 @@ Route::post('/products/{product}/review',[\App\Http\Controllers\HomeController::
 
 Route::get('/add/{product}',[\App\Http\Controllers\CartController::class,'addOne'])->name('add.cart.one');
 Route::post('/add/{product}',[\App\Http\Controllers\CartController::class,'add'])->name('add.cart');
+Route::post('/add/{product}/product',[\App\Http\Controllers\CartController::class,'addDetails'])->name('add.cart.details');
+
 Route::get('/view/cart',[\App\Http\Controllers\CartController::class,'view'])->name('view.cart');
 Route::get('/view/cart/{cart}/remove',[\App\Http\Controllers\CartController::class,'remove'])->name('remove.cart');
 Route::patch('/view/cart/update',[\App\Http\Controllers\CartController::class,'update'])->name('update.cart');
 Route::get('/view/shipInfo',[\App\Http\Controllers\CartController::class,'shipInfo'])->name('ship.info');
 
 Route::get('/view/send/{bill}/mail',[\App\Http\Controllers\CartController::class,'sendBill'])->name('send.bill.email');
+Route::get('/view/send/{ship}/mail',[\App\Http\Controllers\CartController::class,'sendShip'])->name('send.ship.email');
 
 
 

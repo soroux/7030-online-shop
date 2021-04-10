@@ -34,7 +34,7 @@ class WebsiteDesignController extends Controller
 
         if ($request->image){
 
-            $inputs['image'] = $request->image->store('images');
+            $inputs['image'] = $request->image->storeAs('images',$request->image->getClientOriginalName());
             $hero->image = $inputs['image'];
         }
 
@@ -65,8 +65,8 @@ class WebsiteDesignController extends Controller
 
         if ($request->popular_categories){
 
-            $inputs['popular_categories'] = $request->popular_categories->store('images');
-            $category->image = $inputs['popular_categories'];
+            $inputs['popular_categories'] = $request->popular_categories->storeAs('images',$request->popular_categories->getClientOriginalName());
+            $category->popular_categories= $inputs['popular_categories'];
         }
 
 

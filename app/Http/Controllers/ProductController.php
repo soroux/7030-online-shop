@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProductController extends Controller
@@ -19,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $products = Product::paginate(5);
+        $products = Product::paginate(10);
 
         return view('admin/dashboard-products',['products'=>$products]);
     }
@@ -54,12 +55,12 @@ class ProductController extends Controller
             'description'=>'required',
 
 
+
         ]);
-        $tag = Tag::find($request->tag);
 
         if ($request->product_image){
 
-            $inputs['product_image'] = $request->product_image->store('images');
+            $inputs['product_image'] = $request->product_image->storeAs('images/products',$request->product_image->getClientOriginalName());
         }
 
         if ($request->featured){
@@ -67,8 +68,11 @@ class ProductController extends Controller
         }
 
        $product = auth()->user()->products()->create($inputs);
-        $product->tags()->save($tag);
+        if ($request->tag){
+        $tag = Tag::find($request->tag);
 
+        $product->tags()->save($tag);
+            }
         $request->session()->flash('product-created-message',$inputs['name'].' Product was Created');
         return redirect()->route('dashboard.products');
     }
@@ -124,7 +128,7 @@ class ProductController extends Controller
 
         if ($request->product_image){
 
-            $inputs['product_image'] = $request->product_image->store('images');
+            $inputs['product_image'] = $request->product_image->storeAs('images/products',$request->product_image->getClientOriginalName());
             $product->product_image = $inputs['product_image'];
         }
 
@@ -157,7 +161,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
-
+//        Storage::delete('storage/'. $product->product_image);
         $product->delete();
         Session::flash('message','Product was deleted');
         return back();

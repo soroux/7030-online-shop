@@ -55,6 +55,15 @@ class PayrecieptController extends Controller
 
         $payreciept = new payreciept();
         $payreciept->create($input);
+       $carts = Cart::content();
+
+       foreach ($carts as $cart){
+           $product = Product::find($cart->id);
+           if ($product->inventory < $cart->qty){
+               $request->session()->flash('product-inventory', 'محصول مورد نظر تمام شد');
+               return redirect()->route('view.cart');
+           }
+       }
 //
         return Payment::purchase($invoice, function($driver, $transactionId) use ($invoice) {
 
@@ -86,6 +95,8 @@ $amount =$bill->amount;
             $bill->status = "done";
             $bill->update();
 
+
+
             return redirect()->route('verified.purchase',$bill);
 
 
@@ -111,7 +122,9 @@ $amount =$bill->amount;
              Cart::store($bill->transaction_id);
          }
          $paiedcarts = Cart::content();
-
+foreach ($paiedcarts as $paiedcart){
+    Product::where('id',$paiedcart->id)->decrement('inventory',$paiedcart->qty);
+}
           Cart::destroy();
          $carts = Cart::content();
          $cart_total = Cart::total();
