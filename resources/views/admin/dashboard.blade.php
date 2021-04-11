@@ -227,7 +227,7 @@
                                        <h6 class="m-0 font-weight-bold text-primary">Yasin _The Barisata</h6>
                                    </div>
                                    <div class="text-center">
-                                       <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{{asset('images1/barista-making-coffee-cafe.jpg')}}" alt="">
+                                       <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{{asset('images/barista-making-coffee-cafe.jpg')}}" alt="">
                                    </div>
                                </div>
                            </div>
@@ -241,7 +241,7 @@
                                    </div>
                                    <div class="card-body">
                                        <div class="text-center">
-                                           <img class="img-fluid px-3 px-sm-2 mt-3 mb-4" style="width: 30rem;" src="{{asset('images1/wfh_1.svg')}}" alt="">
+                                           <img class="img-fluid px-3 px-sm-2 mt-3 mb-4" style="width: 30rem;" src="{{asset('images/wfh_1.svg')}}" alt="">
                                        </div>
                                    </div>
                                </div>

@@ -11,8 +11,8 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="{{route('home')}}" class="standard-logo"><img src="{{asset('css/shop/images/logo@2x.png')}}" alt="Canvas Logo"></a>
-                        <a href="{{route('home')}}" class="retina-logo"><img src="{{asset('css/shop/images/logo@2x.png')}}" alt="Canvas Logo"></a>
+                        <a href="{{route('home')}}" class="standard-logo"><img src="{{asset('images/logo@2x.png')}}" alt="Canvas Logo"></a>
+                        <a href="{{route('home')}}" class="retina-logo"><img src="{{asset('images/logo@2x.png')}}" alt="Canvas Logo"></a>
                     </div><!-- #logo end -->
 
                     <!-- Primary Navigation
@@ -151,6 +151,39 @@
 
                 <div class="container clearfix">
 
+                    <!-- Sidebar
+                ============================================= -->
+                    <div class="sidebar nobottommargin">
+                        <div class="sidebar-widgets-wrap">
+
+                            <div class="widget widget-filter-links clearfix">
+
+                                <h3>دسته بندی محصول را انتخاب کنبد</h3>
+                                <ul class="custom-filter" data-container="#shop" data-active-class="active-filter">
+                                    <li class="widget-filter-reset active-filter"><a href="#" data-filter="*">حدف</a></li>
+                                    <li><a href="#" data-filter=".coffeebean">دان قهوه</a></li>
+                                    <li><a href="#" data-filter=".accessories">تجهیزات دم آوری</a></li>
+                                    <li><a href="#" data-filter=".mug">ماگ و لیوان</a></li>
+                                    <li><a href="#" data-filter=".ingredients">مواد اولیه</a></li>
+
+                                </ul>
+
+                            </div>
+
+                            <div class="widget widget-filter-links clearfix">
+
+                                <h3>مرتب کرد بر اساس</h3>
+                                <ul class="shop-sorting">
+                                    <li class="widget-filter-reset active-filter"><a href="#" data-sort-by="original-order">Clear</a></li>
+                                    <li><a href="#" data-sort-by="name">نام محصول</a></li>
+                                    <li><a href="#" data-sort-by="price_lh">قیمت: کم به زیاد</a></li>
+                                    <li><a href="#" data-sort-by="price_hl">قیمت: زیاد به کم</a></li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div><!-- .sidebar end -->
                     <!-- Post Content
                     ============================================= -->
                     <div class="postcontent nobottommargin col_last">
@@ -208,39 +241,7 @@
 
                     </div><!-- .postcontent end -->
 
-                    <!-- Sidebar
-                    ============================================= -->
-                    <div class="sidebar nobottommargin">
-                        <div class="sidebar-widgets-wrap">
 
-                            <div class="widget widget-filter-links clearfix">
-
-                                <h3>دسته بندی محصول را انتخاب کنبد</h3>
-                                <ul class="custom-filter" data-container="#shop" data-active-class="active-filter">
-                                    <li class="widget-filter-reset active-filter"><a href="#" data-filter="*">حدف</a></li>
-                                    <li><a href="#" data-filter=".coffeebean">دان قهوه</a></li>
-                                    <li><a href="#" data-filter=".accessories">تجهیزات دم آوری</a></li>
-                                    <li><a href="#" data-filter=".mug">ماگ و لیوان</a></li>
-                                    <li><a href="#" data-filter=".ingredients">مواد اولیه</a></li>
-
-                                </ul>
-
-                            </div>
-
-                            <div class="widget widget-filter-links clearfix">
-
-                                <h3>مرتب کرد بر اساس</h3>
-                                <ul class="shop-sorting">
-                                    <li class="widget-filter-reset active-filter"><a href="#" data-sort-by="original-order">Clear</a></li>
-                                    <li><a href="#" data-sort-by="name">نام محصول</a></li>
-                                    <li><a href="#" data-sort-by="price_lh">قیمت: کم به زیاد</a></li>
-                                    <li><a href="#" data-sort-by="price_hl">قیمت: زیاد به کم</a></li>
-                                </ul>
-
-                            </div>
-
-                        </div>
-                    </div><!-- .sidebar end -->
 
                 </div>
 

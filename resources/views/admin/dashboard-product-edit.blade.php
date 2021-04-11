@@ -52,7 +52,7 @@
                             <label for="inventory">Price</label>
                             <input type="number" name="price" class="form-control" id="price" aria-describedby="" placeholder="Enter Product Price $" value="{{$product->price}}">
                         </div>
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="tag">
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="tag" required>
                             <option selected>Choose tag</option>
                             @foreach($tags as $tag)
                                 <option value="{{$tag->id}}">{{$tag->name}}</option>

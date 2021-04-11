@@ -12,8 +12,8 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="{{route('home')}}" class="standard-logo"><img src="{{asset('css/shop/images/logo@2x.png')}}" alt="Canvas Logo"></a>
-                        <a href="{{route('home')}}" class="retina-logo"><img src="{{asset('css/shop/images/logo@2x.png')}}" alt="Canvas Logo"></a>
+                        <a href="{{route('home')}}" class="standard-logo"><img src="{{asset('images/logo@2x.png')}}" alt="Canvas Logo"></a>
+                        <a href="{{route('home')}}" class="retina-logo"><img src="{{asset('images/logo@2x.png')}}" alt="Canvas Logo"></a>
                     </div><!-- #logo end -->
 
                     <!-- Primary Navigation
@@ -155,9 +155,9 @@
                         <div class="fslider" data-pagi="false" data-animation="fade">
                             <div class="flexslider">
                                 <div class="slider-wrap">
-                                    <div class="slide"><a href="#"><img src="{{asset('images1/cafe.jpg')}}" alt="cafe Image"></a></div>
-                                    <div class="slide"><a href="#"><img src="{{asset('images1/coffee-bar.jpg')}}" alt="coffee Image"></a></div>
-                                    <div class="slide"><a href="#"><img src="{{asset('images1/coffee-beans-brazil.jpg')}}" alt="coffee-beans Image"></a></div>
+                                    <div class="slide"><a href="#"><img src="{{asset('images/cafe.jpg')}}" alt="cafe Image"></a></div>
+                                    <div class="slide"><a href="#"><img src="{{asset('images/coffee-bar.jpg')}}" alt="coffee Image"></a></div>
+                                    <div class="slide"><a href="#"><img src="{{asset('images/coffee-beans-brazil.jpg')}}" alt="coffee-beans Image"></a></div>
                                 </div>
                             </div>
                         </div>
@@ -206,7 +206,7 @@
                         <div class="col-lg-6 bottommargin">
                             <div class="team team-list clearfix">
                                 <div class="team-image">
-                                    <img src="{{asset('images1/coffee.jpg')}}" alt="coffee">
+                                    <img src="{{asset('images/coffee.jpg')}}" alt="coffee">
                                 </div>
                                 <div class="team-desc">
                                     <div class="team-title"><h4>فروش قهوه</h4><span>دان یا آسیاب</span></div>
@@ -220,7 +220,7 @@
                         <div class="col-lg-6 bottommargin">
                             <div class="team team-list clearfix">
                                 <div class="team-image">
-                                    <img src="{{asset('images1/coffee-group.jpg')}}" alt="coffee accesories">
+                                    <img src="{{asset('images/coffee-group.jpg')}}" alt="coffee accesories">
                                 </div>
                                 <div class="team-desc">
                                     <div class="team-title"><h4>فروش تجهیزات دم آوری</h4><span>موکاپات، فرنچ پرس ، جزوه و غیره</span></div>
@@ -234,7 +234,7 @@
                         <div class="col-lg-6 bottommargin">
                             <div class="team team-list clearfix">
                                 <div class="team-image">
-                                    <img src="{{asset('images1/keepcup.jpg')}}" alt="cup">
+                                    <img src="{{asset('images/keepcup-review-1.jpg')}}" alt="cup">
                                 </div>
                                 <div class="team-desc">
                                     <div class="team-title"><h4> فروش ماگ و لیوان</h4><span>فلاسک، ماگ مسافرتی </span></div>
@@ -248,7 +248,7 @@
                         <div class="col-lg-6 bottommargin">
                             <div class="team team-list clearfix">
                                 <div class="team-image">
-                                    <img src="{{asset('images1/Instant-Coffee.jpg')}}" alt="instant Coffee">
+                                    <img src="{{asset('images/Instant-Coffee.jpg')}}" alt="instant Coffee">
                                 </div>
                                 <div class="team-desc">
                                     <div class="team-title"><h4>فروش مواد اولیه </h4><span>چای ماسالا،نسکافه گلد،هاتچاکلت</span></div>
@@ -272,7 +272,7 @@
                             <div class="slider-wrap">
                                 <div class="slide">
                                     <div class="testi-image">
-                                        <a href="#"><img src="{{asset('images1/testimonials/3.jpg')}}" alt="Customer Testimonails"></a>
+                                        <a href="#"><img src="{{asset('images/coffee.jpg')}}" alt="Customer Testimonails"></a>
                                     </div>
                                     <div class="testi-content">
                                         <p>بهترین بهترین ها و با فیمت عالییی</p>
@@ -284,7 +284,7 @@
                                 </div>
                                 <div class="slide">
                                     <div class="testi-image">
-                                        <a href="#"><img src="{{asset('images1/testimonials/2.jpg')}}" alt="Customer Testimonails"></a>
+                                        <a href="#"><img src="{{asset('images/keepcup-review-1.jpg')}}" alt="Customer Testimonails"></a>
                                     </div>
                                     <div class="testi-content">
                                         <p>Natus voluptatum enim quod necessitatibus quis expedita harum provident eos obcaecati id culpa corporis molestias.</p>
@@ -296,7 +296,7 @@
                                 </div>
                                 <div class="slide">
                                     <div class="testi-image">
-                                        <a href="#"><img src="{{asset('images1/testimonials/1.jpg')}}" alt="Customer Testimonails"></a>
+                                        <a href="#"><img src="{{asset('images/keepcup-review-1.jpg')}}" alt="Customer Testimonails"></a>
                                     </div>
                                     <div class="testi-content">
                                         <p>Incidunt deleniti blanditiis quas aperiam recusandae consequatur ullam quibusdam cum libero illo rerum!</p>

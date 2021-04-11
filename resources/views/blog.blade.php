@@ -12,8 +12,8 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="{{route('home')}}" class="standard-logo"><img src="{{asset('css/shop/images/logo@2x.png')}}" alt="Canvas Logo"></a>
-                        <a href="{{route('home')}}" class="retina-logo"><img src="{{asset('css/shop/images/logo@2x.png')}}" alt="Canvas Logo"></a>
+                        <a href="{{route('home')}}" class="standard-logo"><img src="{{asset('images/logo@2x.png')}}" alt="Canvas Logo"></a>
+                        <a href="{{route('home')}}" class="retina-logo"><img src="{{asset('images/logo@2x.png')}}" alt="Canvas Logo"></a>
                     </div><!-- #logo end -->
 
                     <!-- Primary Navigation

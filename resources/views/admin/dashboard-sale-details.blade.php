@@ -111,12 +111,12 @@
                                         <tr>
                                             <td>7</td>
                                             <td>شهر - تحویل گیرنده</td>
-                                            <td>{{$receiptContent->ship_ciry}}</td>
+                                            <td>{{$receiptContent->ship_city}}</td>
                                         </tr>
                                         <tr>
                                             <td>8</td>
                                             <td>آدرس - تحویل گیرنده</td>
-                                            <td>{{$receiptContent->ship_adress}}</td>
+                                            <td>{{$receiptContent->ship_address}}</td>
                                         </tr>
                                         <tr>
                                             <td>9</td>
