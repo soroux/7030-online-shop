@@ -210,7 +210,7 @@
                                 <div class="oc-item">
                                     <div class="product iproduct clearfix">
                                         <div class="product-image">
-                                            <a href="#"><img src="{{$special_product->product_image}}" alt=""></a>
+                                         <img src="{{$special_product->product_image}}" alt="">
                                             <div class="product-overlay">
                                                 <a href="{{route('quick.view',$special_product)}}" class="item-quick-view" data-lightbox="ajax"><i class="icon-line-search"></i><span>Quick View</span></a>
                                             </div>
@@ -235,7 +235,7 @@
                         <div class="oc-item">
                             <div class="product iproduct clearfix">
                                 <div class="product-image">
-                                    <a href="#"><img src="{{$special_product->product_image}}" alt=""></a>
+                                    <img src="{{$special_product->product_image}}" alt="">
 
                                     <div class="product-overlay">
                                         <a href="{{route('add.cart.one',$special_product)}}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
@@ -279,7 +279,7 @@
             <div class="col-lg-2 col-md-3 col-6 px-2">
                 <div class="product iproduct clearfix">
                     <div class="product-image">
-                        <a href="#"><img src="{{$product->product_image}}" alt="Image 1"></a>
+                      <img src="{{$product->product_image}}" alt="Image 1">
                         <div class="product-overlay">
                             <a href="{{route('quick.view',$product)}}" class="item-quick-view" data-lightbox="ajax"><i class="icon-line-search"></i><span>Quick View</span></a>
                         </div>
@@ -304,7 +304,7 @@
                         <div class="col-lg-2 col-md-3 col-6 px-2">
                             <div class="product iproduct clearfix">
                                 <div class="product-image">
-                                    <a href="#"><img src="{{$product->product_image}}" alt="Image 1"></a>
+                                  <img src="{{$product->product_image}}" alt="Image 1">
                                     <div class="product-overlay">
                                         <a href="{{route('add.cart.one',$product)}}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
                                         <a href="{{route('quick.view',$product)}}" class="item-quick-view" data-lightbox="ajax"><i class="icon-line-search"></i><span>Quick View</span></a>

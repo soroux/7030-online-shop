@@ -195,7 +195,7 @@
                                 @if($product->inventory <=0)
                                     <div class="product {{$product->category}} clearfix">
                                         <div class="product-image">
-                                            <a href="#"><img src="{{$product->product_image}}" alt="{{$product->name}}"></a>
+                                            <img src="{{$product->product_image}}" alt="{{$product->name}}">
                                             <div class="product-overlay">
                                                 <a href="{{route('quick.view',$product)}}" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
                                             </div>
@@ -216,7 +216,7 @@
                                 @else
                             <div class="product {{$product->category}} clearfix">
                                 <div class="product-image">
-                                    <a href="#"><img src="{{$product->product_image}}" alt="{{$product->name}}"></a>
+                                   <img src="{{$product->product_image}}" alt="{{$product->name}}">
                                     <div class="product-overlay">
                                         <a href="{{route('add.cart.one',$product)}}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
                                         <a href="{{route('quick.view',$product)}}" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
