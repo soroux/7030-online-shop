@@ -65,12 +65,12 @@
                         </div>
                         <div class="form-group">
                             <label for="content">content</label>
-                            <textarea name="content" id="content" cols="30" rows="5" class="form-control">{{$product->content}}</textarea>
+                            <textarea name="content" cols="30" rows="5" class="form-control">{{$product->content}}</textarea>
 
                         </div>
                         <div class="form-group">
                             <label for="content">description</label>
-                            <textarea name="description" id="content" cols="30" rows="10" class="form-control">{{$product->description}}</textarea>
+                            <textarea id="editor" name="description"  cols="30" rows="10" class="form-control">{!! $product->description !!}</textarea>
 
                         </div>
 
@@ -103,3 +103,10 @@
 
 
 </x-app-master>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor ' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

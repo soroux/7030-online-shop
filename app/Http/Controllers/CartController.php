@@ -28,8 +28,25 @@ class CartController extends Controller
         } elseif ($product->inventory >= $request->quantity) {
 
             Cart::add($product, $request->quantity);
+            $request->session()->flash('product', 'محصول به سبد خرید اضافه شد');
 
             return redirect()->route('home');
+        }
+    }
+    public function addShop(Product $product,Request $request)
+    {
+        if ($product->inventory <= 0) {
+            $request->session()->flash('product-inventory', 'محصول مورد نظر در انبار موجود نیست');
+            return redirect()->route('shop');
+        } elseif ($product->inventory < $request->quantity) {
+            $request->session()->flash('product-inventory', 'در انبار این تعداد موجود نیست');
+            return redirect()->route('shop');
+
+        } elseif ($product->inventory >= $request->quantity) {
+            Cart::add($product, $request->quantity);
+            $request->session()->flash('product', 'محصول به سبد خرید اضافه شد');
+
+            return redirect()->route('shop');
         }
     }
     public function addOne(Product $product,Request $request){
@@ -41,7 +58,23 @@ class CartController extends Controller
         }  else{
 
             Cart::add($product, 1);
+            $request->session()->flash('product', 'محصول به سبد خرید اضافه شد');
+
             return redirect()->route('home');
+        }
+
+    }
+    public function addOneShop(Product $product,Request $request){
+
+
+        if ($product->inventory <= 0) {
+            $request->session()->flash('product-inventory', 'محصول مورد نظر در انبار موجود نیست');
+            return redirect()->route('shop');
+        }  else{
+            Cart::add($product, 1);
+            $request->session()->flash('product', 'محصول به سبد خرید اضافه شد');
+
+            return redirect()->route('shop');
         }
 
     }
@@ -59,6 +92,7 @@ class CartController extends Controller
         } elseif ($product->inventory >= $request->quantity) {
 
             Cart::add($product, $request->quantity);
+            $request->session()->flash('product', 'محصول به سبد خرید اضافه شد');
 
             return redirect()->route('view',$product);
         }
@@ -96,6 +130,7 @@ $product = Product::find($request->product_id);
         } elseif ($product->inventory >= $request->quantity) {
 
             Cart::update($request->id,$request->quantity);
+            $request->session()->flash('product', 'محصول به سبد خرید اضافه شد');
 
             return redirect()->route('view.cart');
         }
@@ -134,8 +169,8 @@ $input['transaction_id'] = $bill->transaction_id;
         $input['email'] = $bill->pay_email;
 
 
-        Mail::send('email-bill',$input,function ($message){
-            $message->to('soroush.ganjuee@gmail.com')->subject('7030 فروشگاه قهوه');
+        Mail::send('email-bill',$input,function ($message) use ($bill){
+            $message->to($bill->pay_email)->subject('7030 فروشگاه قهوه');
         });
 
         return back();
@@ -143,22 +178,18 @@ $input['transaction_id'] = $bill->transaction_id;
     }
 
     public function sendShip(payreciept $bill){
-        Cart::restore($bill->transaction_id);
 
 
 
-        $input['title'] = "رسید پرداخت فروشگاه 7030";
-        $input['name'] = $bill->pay_name;
+        $input['title'] = " فروشگاه 7030";
+        $input['name'] = $bill->ship_name;
         $input['carts'] = Cart::content();
         $input['date'] = $bill->created_at;
-        $input['referenceId'] = $bill->refrenceID;
-        $input['transaction_id'] = $bill->transaction_id;
-        $input['cart_total'] = Cart::total();
-        $input['email'] = $bill->pay_email;
+        $input['email'] = $bill->ship_email;
 
 
-        Mail::send('email-bill',$input,function ($message){
-            $message->to('soroush.ganjuee@gmail.com')->subject('7030 فروشگاه قهوه');
+        Mail::send('email-ship',$input,function ($message,$bill){
+            $message->to($bill->ship_email)->subject('7030 فروشگاه قهوه');
         });
 
         return back();

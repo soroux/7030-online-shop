@@ -44,7 +44,7 @@
                     </div>
                 </form>
             @else
-            <form class="cart nobottommargin clearfix" method="post" enctype='multipart/form-data' action="{{route('add.cart',$product)}}">
+            <form class="cart nobottommargin clearfix" method="post" enctype='multipart/form-data' action="{{route('add.cart.shop',$product)}}">
                 @csrf
                 <div class="quantity clearfix">
                     <input type="button" value="-" class="minus" field="quantity">

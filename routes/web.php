@@ -17,6 +17,8 @@ Route::get('/',[\App\Http\Controllers\HomeController::class,'index'])->name('hom
 Route::get('/shop',[\App\Http\Controllers\HomeController::class,'shop'])->name('shop');
 Route::get('/blog',[\App\Http\Controllers\HomeController::class,'blog'])->name('blog');
 Route::get('/contacts',[\App\Http\Controllers\HomeController::class,'contacts'])->name('contacts');
+Route::post('/email',[\App\Http\Controllers\HomeController::class,'email'])->name('contact.email');
+
 Route::get('/about',[\App\Http\Controllers\HomeController::class,'about'])->name('about');
 
 Route::get('/blog/{post}/post',[\App\Http\Controllers\HomeController::class,'viewPost'])->name('blog.post');
@@ -24,6 +26,8 @@ Route::post('/blog/{post}/comment',[\App\Http\Controllers\HomeController::class,
 
 
 Route::get('/products/{product}/quickView',[\App\Http\Controllers\HomeController::class,'quickView'])->name('quick.view');
+Route::get('/products/{product}/quickViewShop',[\App\Http\Controllers\HomeController::class,'quickViewShop'])->name('quick.view.shop');
+
 Route::get('/products/{product}/view',[\App\Http\Controllers\HomeController::class,'view'])->name('view');
 Route::post('/products/{product}/review',[\App\Http\Controllers\HomeController::class,'createReview'])->name('create.review');
 
@@ -32,6 +36,8 @@ Route::post('/products/{product}/review',[\App\Http\Controllers\HomeController::
 
 Route::get('/add/{product}',[\App\Http\Controllers\CartController::class,'addOne'])->name('add.cart.one');
 Route::post('/add/{product}',[\App\Http\Controllers\CartController::class,'add'])->name('add.cart');
+Route::get('/add/shop/{product}',[\App\Http\Controllers\CartController::class,'addOneShop'])->name('add.cart.one.shop');
+Route::post('/add/shop/{product}',[\App\Http\Controllers\CartController::class,'addShop'])->name('add.cart.shop');
 Route::post('/add/{product}/product',[\App\Http\Controllers\CartController::class,'addDetails'])->name('add.cart.details');
 
 Route::get('/view/cart',[\App\Http\Controllers\CartController::class,'view'])->name('view.cart');

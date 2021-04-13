@@ -7,7 +7,15 @@
 
             <!-- Main Content -->
             <div id="content">
-
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+            @endif
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -42,11 +50,11 @@
 {{--                            @endforeach--}}
 
 {{--                        </select>--}}
-                        <div class="form-group">
-                            <label for="content">content</label>
-                            <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{$post->content}}</textarea>
 
-                        </div>
+<div class="form-group">
+                            <label for="content">content</label>
+                           <textarea id="editor" name="content" class="form-control">{!! $post->content !!}</textarea>
+</div>
                         <button type="submit" class="btn btn-primary">edit</button>
 
                     </form>
@@ -75,4 +83,12 @@
 
 
 
+
 </x-app-master>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

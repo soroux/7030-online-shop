@@ -121,6 +121,12 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <i class="icon-remove-sign"></i><strong>وای بر من!</strong>{{session('product-inventory')}}
                     </div>
+                @elseif(session('product'))
+                    <div class="alert alert-success nobottommargin">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <i class="icon-remove-sign"></i><strong>مبارکه!</strong>{{session('product')}}
+                    </div>
+
                 @endif
             </div>
 
@@ -212,7 +218,7 @@
 
                                 <!-- Product Single - Short Description
                                 ============================================= -->
-                                <p>{{$product->content}}</p>
+                                {!!$product->content!!}
                                 <ul class="iconlist">
                                     <li><i class="icon-caret-right"></i>ارسال در کوتاه ترین زمان</li>
                                     <li><i class="icon-caret-right"></i> ضمانت بازگشت کالا</li>
@@ -265,7 +271,7 @@
 
                             <div class="col_one_fifth col_last">
 
-                                <a href="#" title="Brand Logo" class="d-none d-md-block"><img class="image_fade" src="{{asset('css/shop/images/logo.png')}}" alt="Brand Logo"></a>
+                                <a href="#" title="Brand Logo" class="d-none d-md-block"><img class="image_fade" src="{{asset('images/logo@2x.png')}}" alt="Brand Logo"></a>
 
                                 <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
 
@@ -316,7 +322,7 @@
                                     <div class="tab-container">
 
                                         <div class="tab-content clearfix" id="tabs-1">
-                                            <p>{{$product->description}}
+                                            {!!$product->description!!}
                                         </div>
                                         <div class="tab-content clearfix" id="tabs-2">
 

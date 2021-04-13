@@ -121,6 +121,12 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <i class="icon-remove-sign"></i><strong>وای بر من!</strong>{{session('product-inventory')}}
                     </div>
+                @elseif(session('product'))
+                    <div class="alert alert-success nobottommargin">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <i class="icon-remove-sign"></i><strong>مبارکه!</strong>{{session('product')}}
+                    </div>
+
                 @endif
             </div>
 
@@ -218,8 +224,8 @@
                                 <div class="product-image">
                                    <img src="{{$product->product_image}}" alt="{{$product->name}}">
                                     <div class="product-overlay">
-                                        <a href="{{route('add.cart.one',$product)}}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
-                                        <a href="{{route('quick.view',$product)}}" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+                                        <a href="{{route('add.cart.one.shop',$product)}}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                                        <a href="{{route('quick.view.shop',$product)}}" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
                                     </div>
                                 </div>
                                 <div class="product-desc center">

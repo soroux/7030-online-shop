@@ -66,7 +66,7 @@
                         </select>
                         <div class="form-group">
                             <label for="content">content</label>
-                            <textarea name="content" id="content" cols="30" rows="10" class="form-control" required></textarea>
+                            <textarea  id="editor" name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
 
                         </div>
                         <button type="submit" class="btn btn-primary">Create</button>
@@ -98,3 +98,11 @@
 
 
 </x-app-master>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

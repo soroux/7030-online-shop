@@ -123,7 +123,13 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <i class="icon-remove-sign"></i><strong>وای بر من!</strong>{{session('product-inventory')}}
                     </div>
-                @endif
+                    @elseif(session('product'))
+                        <div class="alert alert-success nobottommargin">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="icon-remove-sign"></i><strong>مبارکه!</strong>{{session('product')}}
+                        </div>
+
+                    @endif
 
             </div>
 

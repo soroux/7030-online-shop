@@ -169,7 +169,7 @@
                                     <li><a href="#"><i class="icon-camera-retro"></i></a></li>
                                 </ul>
                                 <div class="entry-content">
-                                    <p>{{$post->content}}.</p>
+                                    {!!$post->content!!}
                                     <a href="{{route('blog.post',$post)}}"class="more-link">Read More</a>
                                 </div>
                             </div>

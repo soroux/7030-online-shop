@@ -9,6 +9,7 @@ use App\Models\Website_design;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -108,6 +109,16 @@ class HomeController extends Controller
 
         ]);
     }
+    public function quickViewShop(Product $product){
+        $carts = Cart::content();
+        $cart_total = Cart::total();
+        return view('quick-product-view-shop',[
+            'product'=>$product,
+            'carts'=>$carts,
+            'cart_total'=>$cart_total,
+
+        ]);
+    }
 
 
     public function View(Product $product){
@@ -136,6 +147,24 @@ class HomeController extends Controller
 
         $review = $product->Reviews()->create($input);
         return redirect()->route('view',$product);
+
+    }
+
+
+    public function email(Request $request){
+
+        $input['name'] = $request->name;
+        $input['subject'] = $request->subject;
+        $input['phone'] = $request->phone;
+        $input['contents'] = $request->contents;
+        $input['email'] = $request->email;
+
+
+        Mail::send('contact-mail',$input,function ($message){
+            $message->to('soroush.ganjuee@gmail.com')->subject('7030 فروشگاه قهوه');
+        });
+$request->session()->flash('message','پیام شما با موفقیت ارسال شد');
+        return back();
 
     }
 }

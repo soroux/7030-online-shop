@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group">
                             <label for="content">Description</label>
-                            <textarea name="description" id="content" cols="30" rows="10" class="form-control" required></textarea>
+                            <textarea id="editor" name="description" id="content" cols="30" rows="10" class="form-control" required></textarea>
 
                         </div>
                         <button type="submit" class="btn btn-primary">Create</button>
@@ -103,3 +103,10 @@
 
 
 </x-app-master>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

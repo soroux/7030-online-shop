@@ -68,6 +68,7 @@
 
         @livewireScripts
         <!-- Bootstrap core JavaScript-->
+        <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
         <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
         <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
@@ -86,5 +87,6 @@
         <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
         <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
         <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
+
     </body>
 </html>

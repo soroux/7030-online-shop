@@ -153,7 +153,7 @@
 
                             <!-- Single Post
                             ============================================= -->
-                            <div class="entry clearfix">
+                            <div class="entry clearfix" dir>
 
                                 <!-- Entry Title
                                 ============================================= -->
@@ -179,9 +179,9 @@
 
                                 <!-- Entry Content
                                 ============================================= -->
-                                <div class="entry-content notopmargin">
+                                <div class="entry-content notopmargin" >
 
-                                    <p>{{$post->content}}.</p>
+                                  {!!$post->content!!}
 
                                    <!-- Post Single - Content End -->
 

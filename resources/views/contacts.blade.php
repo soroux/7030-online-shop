@@ -127,11 +127,11 @@
         <section id="page-title">
 
             <div class="container clearfix">
-                <h1>Contact</h1>
-                <span>Get in Touch with Us</span>
+                <h1>تماس با ما</h1>
+                <span>مارو اینجا میتونین پیدا کنین</span>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                    <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">تماس با ما</li>
                 </ol>
             </div>
 
@@ -140,64 +140,66 @@
 
         <!-- Contact Form & Map Overlay Section
         ============================================= -->
-        <section id="map-overlay">
+        <section>
+            <!-- Google Map
+                              ============================================= -->
+            <section id="google-map" class="gmap">
+                <div class="container clearfix">
+                </div>
 
+                <iframe width=100% height="450" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJxzFuBbOjjz8R4Jwf-T0GWUc&key=AIzaSyCGV1o2sqentGk6Sau93nFO1hktFKywpxI"></iframe>
+            </section>
             <div class="container clearfix">
-
+                @if(session('message'))
+                    <div class="alert alert-success">{{session('message')}}</div>
+                @endif
                 <!-- Contact Form Overlay
                 ============================================= -->
-                <div id="contact-form-overlay" class="clearfix">
+                <div  class="clearfix">
 
                     <div class="fancy-title title-dotted-border">
                         <h3>برای ما ایمیل بفرستید</h3>
                     </div>
 
-                    <div class="form-widget">
+                    <div class="">
 
                         <div class="form-result"></div>
 
                         <!-- Contact Form
                         ============================================= -->
-                        <form class="nobottommargin" id="template-contactform" name="template-contactform" action="include/form.php" method="post">
-
+                        <form class="nobottommargin" action="{{route('contact.email')}}" method="post">
+                              @csrf
                             <div class="col_half">
                                 <label for="template-contactform-name">اسم <small>*</small></label>
-                                <input type="text" id="template-contactform-name" name="template-contactform-name" value="" class="sm-form-control required" />
+                                <input type="text"  name="name" value="" class="sm-form-control required" />
                             </div>
 
                             <div class="col_half col_last">
                                 <label for="template-contactform-email">آدرس ایمیل <small>*</small></label>
-                                <input type="email" id="template-contactform-email" name="template-contactform-email" value="" class="required email sm-form-control" />
+                                <input type="email"  name="email" value="" class="required email sm-form-control" />
                             </div>
 
                             <div class="clear"></div>
 
                             <div class="col_half">
                                 <label for="template-contactform-phone">شماره تلفن</label>
-                                <input type="text" id="template-contactform-phone" name="template-contactform-phone" value="" class="sm-form-control" />
+                                <input type="text"  name="phone" value="" class="sm-form-control" />
                             </div>
 
                             <div class="clear"></div>
 
                             <div class="col_full">
                                 <label for="template-contactform-subject">عنوان <small>*</small></label>
-                                <input type="text" id="template-contactform-subject" name="subject" value="" class="required sm-form-control" />
+                                <input type="text"  name="subject" value="" class="required sm-form-control" />
                             </div>
 
                             <div class="col_full">
                                 <label for="template-contactform-message">پیام <small>*</small></label>
-                                <textarea class="required sm-form-control" id="template-contactform-message" name="template-contactform-message" rows="6" cols="30"></textarea>
+                                <textarea class="required sm-form-control"  name="contents" rows="6" cols="30"></textarea>
                             </div>
-
-                            <div class="col_full hidden">
-                                <input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="sm-form-control" />
-                            </div>
-
                             <div class="col_full">
-                                <button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit">Send Message</button>
+                                <button class="button button-3d nomargin" type="submit">Send Message</button>
                             </div>
-
-                            <input type="hidden" name="prefix" value="template-contactform-">
 
                         </form>
                     </div>
@@ -216,7 +218,7 @@
                         </address>
                         <abbr title="Phone Number"><strong>تلفن:</strong></abbr> (+98) 4458 3637<br>
                         <abbr title="Fax"><strong>همراه:</strong></abbr> (0) 935 864 1616<br>
-                        <abbr title="Email Address"><strong>ایمبا:</strong></abbr> doroudh.ganjiu@gmail.com
+                        <abbr title="Email Address"><strong> ایمیل: </strong></abbr> soroudh.ganjiu@gmail.com
 
                     </div><!-- Contact Info End -->
 
@@ -228,11 +230,7 @@
 
             </div>
 
-            <!-- Google Map
-            ============================================= -->
-            <section id="google-map" class="gmap">
 
-            </section>
 
 
         </section><!-- Contact Form & Map Overlay Section End -->
